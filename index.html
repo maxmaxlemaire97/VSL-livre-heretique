@@ -406,6 +406,7 @@ src="https://www.facebook.com/tr?id=559844881916934&ev=PageView&noscript=1"/></n
     // Pixel Facebook côté navigateur (complète la Conversions API)
     if (typeof fbq !== 'undefined') {
       fbq('track', 'Lead', { content_name: 'VSL Livre Hérétique' });
+      fbq('track', 'Contact');
     }
 
     window.location.href = 'vsl-confiance.html';
