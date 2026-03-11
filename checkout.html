@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finaliser votre commande — Incopiable</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C8973C;
+      --gold-light: #F5E6C8;
+      --dark: #111111;
+      --text: #1C1C1C;
+      --muted: #6B6B6B;
+      --border: #E5E3DF;
+      --bg: #FAF9F7;
+      --bg-alt: #F2EFE9;
+      --white: #FFFFFF;
+      --green: #1A7F4B;
+      --green-light: #E6F4ED;
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 18px;
+      color: var(--dark);
+      text-decoration: none;
+    }
+    .nav-secure {
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .nav-secure::before {
+      content: "🔒";
+      font-size: 11px;
+    }
+
+    /* ── LAYOUT ── */
+    .checkout-wrap {
+      max-width: 960px;
+      margin: 40px auto;
+      padding: 0 24px 80px;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 40px;
+      align-items: start;
+    }
+
+    @media (max-width: 760px) {
+      .checkout-wrap {
+        grid-template-columns: 1fr;
+        margin: 24px auto;
+        gap: 24px;
+      }
+    }
+
+    /* ── TYPOGRAPHY ── */
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(24px, 4vw, 32px);
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+    h2 {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--dark);
+      margin-bottom: 16px;
+    }
+
+    /* ── SECTION CARD ── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+
+    /* ── FORM ── */
+    .form-group {
+      margin-bottom: 16px;
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: var(--sans);
+      font-size: 15px;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    input:focus {
+      border-color: var(--gold);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    /* Carte simulée */
+    .card-field {
+      position: relative;
+    }
+    .card-icons {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      gap: 4px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* ── ORDER BUMPS ── */
+    .bump {
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      position: relative;
+    }
+    .bump:hover {
+      border-color: var(--gold);
+      background: #FFFDF7;
+    }
+    .bump.active {
+      border-color: var(--gold);
+      border-style: solid;
+      background: #FFFDF7;
+    }
+    .bump-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .bump-checkbox {
+      width: 22px;
+      height: 22px;
+      border: 2px solid var(--border);
+      border-radius: 5px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s, border-color 0.15s;
+      background: var(--white);
+    }
+    .bump.active .bump-checkbox {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+    .bump-checkbox-tick {
+      color: white;
+      font-size: 13px;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+    .bump.active .bump-checkbox-tick {
+      opacity: 1;
+    }
+    .bump-content { flex: 1; }
+    .bump-tag {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--white);
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 2px 8px;
+      border-radius: 100px;
+      margin-bottom: 6px;
+    }
+    .bump-title {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--dark);
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+    .bump-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .bump-price {
+      font-weight: 600;
+      color: var(--gold);
+      font-size: 15px;
+      margin-top: 8px;
+    }
+    .bump-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .bump-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── RÉSUMÉ COMMANDE ── */
+    .order-summary { }
+    .order-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .order-line:last-child { border-bottom: none; }
+    .order-line-name { color: var(--text); line-height: 1.4; }
+    .order-line-price { font-weight: 600; color: var(--dark); white-space: nowrap; }
+    .order-line.bump-line { opacity: 0.4; transition: opacity 0.2s; }
+    .order-line.bump-line.visible { opacity: 1; }
+
+    .order-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 16px;
+      margin-top: 4px;
+    }
+    .order-total-label {
+      font-weight: 600;
+      font-size: 15px;
+    }
+    .order-total-price {
+      font-family: var(--serif);
+      font-size: 28px;
+      color: var(--dark);
+      letter-spacing: -0.02em;
+    }
+
+    /* ── CTA BUTTON ── */
+    .btn-pay {
+      display: block;
+      width: 100%;
+      background: var(--gold);
+      color: var(--white);
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 600;
+      padding: 16px 24px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: center;
+      transition: opacity 0.2s, transform 0.15s;
+      letter-spacing: 0.01em;
+      margin-top: 8px;
+    }
+    .btn-pay:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+    .btn-pay-sub {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    /* ── TRUST ELEMENTS ── */
+    .trust-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .trust-icon { font-size: 14px; }
+
+    /* ── GUARANTEE ── */
+    .guarantee {
+      background: var(--green-light);
+      border: 1px solid #C3E6D5;
+      border-radius: 10px;
+      padding: 16px 18px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-top: 20px;
+    }
+    .guarantee-icon { font-size: 24px; flex-shrink: 0; }
+    .guarantee-title {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--green);
+      margin-bottom: 3px;
+    }
+    .guarantee-text { font-size: 13px; color: #2D6A4F; line-height: 1.5; }
+
+    /* ── LEFT COLUMN HEADING ── */
+    .page-heading {
+      margin-bottom: 24px;
+    }
+    .page-heading .step {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .page-heading p {
+      font-size: 15px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* ── BOOK PREVIEW ── */
+    .book-preview {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      padding: 16px;
+      background: var(--bg-alt);
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    .book-cover {
+      width: 52px;
+      height: 68px;
+      background: var(--dark);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+      box-shadow: 2px 3px 8px rgba(0,0,0,0.25);
+    }
+    .book-cover::after {
+      content: "I";
+      font-family: var(--serif);
+      font-size: 22px;
+      color: var(--gold);
+      font-style: italic;
+    }
+    .book-info { flex: 1; }
+    .book-title { font-weight: 600; font-size: 14px; color: var(--dark); }
+    .book-author { font-size: 12px; color: var(--muted); margin-top: 1px; }
+    .book-price-wrap { text-align: right; }
+    .book-price { font-weight: 700; font-size: 16px; color: var(--dark); }
+    .book-price-old { font-size: 12px; color: var(--muted); text-decoration: line-through; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Incopiable</a>
+    <span class="nav-secure">Paiement sécurisé</span>
+  </nav>
+
+  <div class="checkout-wrap">
+
+    <!-- COLONNE GAUCHE — Formulaire -->
+    <div class="left-col">
+
+      <div class="page-heading">
+        <div class="step">Étape finale</div>
+        <h1>Finalisez votre commande</h1>
+        <p>Votre livre sera disponible immédiatement après paiement.</p>
+      </div>
+
+      <!-- Informations personnelles -->
+      <div class="card">
+        <h2>Vos informations</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" placeholder="Jean" autocomplete="given-name" />
+          </div>
+          <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" placeholder="Dupont" autocomplete="family-name" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Adresse email</label>
+          <input type="email" id="email" placeholder="jean@exemple.fr" autocomplete="email" />
+        </div>
+      </div>
+
+      <!-- Paiement -->
+      <div class="card">
+        <h2>Paiement</h2>
+        <div class="form-group card-field">
+          <label for="card-number">Numéro de carte</label>
+          <input type="tel" id="card-number" placeholder="1234 5678 9012 3456" autocomplete="cc-number" />
+          <div class="card-icons">💳</div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="expiry">Date d'expiration</label>
+            <input type="tel" id="expiry" placeholder="MM / AA" autocomplete="cc-exp" />
+          </div>
+          <div class="form-group">
+            <label for="cvc">CVC</label>
+            <input type="tel" id="cvc" placeholder="123" autocomplete="cc-csc" />
+          </div>
+        </div>
+      </div>
+
+      <!-- ORDER BUMPS -->
+      <div class="card">
+        <div class="bump-label">Ajoutez à votre commande</div>
+
+        <!-- Bump 1 -->
+        <div class="bump" id="bump1" onclick="toggleBump(1)">
+          <div class="bump-header">
+            <div class="bump-checkbox">
+              <span class="bump-checkbox-tick">✓</span>
+            </div>
+            <div class="bump-content">
+              <div class="bump-tag">Oui, j'ajoute ça</div>
+              <div class="bump-title">30 domaines à haut potentiel que personne ne regarde</div>
+              <div class="bump-desc">Chaque domaine analysé en profondeur : racine du problème identifiée, secret non formulé, opportunité de monopole. Un raccourci de 3 mois de recherche.</div>
+              <div class="bump-price">+ 27€</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bump 2 -->
+        <div class="bump" id="bump2" onclick="toggleBump(2)">
+          <div class="bump-header">
+            <div class="bump-checkbox">
+              <span class="bump-checkbox-tick">✓</span>
+            </div>
+            <div class="bump-content">
+              <div class="bump-tag">Oui, j'ajoute ça</div>
+              <div class="bump-title">Audiobook + 5 études de cas d'entrepreneurs qui ont créé un marché de 1</div>
+              <div class="bump-desc">Écoutez Incopiable en déplacement, et découvrez 5 trajectoires réelles d'experts qui ont trouvé leur secret et construit leur monopole personnel.</div>
+              <div class="bump-price">+ 17€</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- COLONNE DROITE — Résumé -->
+    <div class="right-col">
+
+      <div class="card">
+        <h2>Votre commande</h2>
+
+        <!-- Book preview -->
+        <div class="book-preview">
+          <div class="book-cover"></div>
+          <div class="book-info">
+            <div class="book-title">Incopiable</div>
+            <div class="book-author">Maxime Lemaire</div>
+          </div>
+          <div class="book-price-wrap">
+            <div class="book-price">4,99€</div>
+            <div class="book-price-old">25€</div>
+          </div>
+        </div>
+
+        <!-- Lignes de commande -->
+        <div class="order-summary">
+          <div class="order-line">
+            <div class="order-line-name">Incopiable — le livre</div>
+            <div class="order-line-price">4,99€</div>
+          </div>
+          <div class="order-line bump-line" id="line-bump1">
+            <div class="order-line-name">30 domaines à haut potentiel</div>
+            <div class="order-line-price">27,00€</div>
+          </div>
+          <div class="order-line bump-line" id="line-bump2">
+            <div class="order-line-name">Audiobook + 5 études de cas</div>
+            <div class="order-line-price">17,00€</div>
+          </div>
+        </div>
+
+        <div class="order-total">
+          <span class="order-total-label">Total aujourd'hui</span>
+          <span class="order-total-price" id="total">4,99€</span>
+        </div>
+
+        <button class="btn-pay" onclick="submitOrder()">
+          Obtenir mon accès immédiat →
+        </button>
+        <div class="btn-pay-sub">🔒 Paiement 100% sécurisé · SSL</div>
+
+        <div class="trust-row">
+          <div class="trust-item"><span class="trust-icon">📘</span> Accès immédiat</div>
+          <div class="trust-item"><span class="trust-icon">🔒</span> Données protégées</div>
+          <div class="trust-item"><span class="trust-icon">↩️</span> Remboursé si déçu</div>
+        </div>
+
+        <div class="guarantee">
+          <div class="guarantee-icon">🛡️</div>
+          <div>
+            <div class="guarantee-title">Garantie 365 jours</div>
+            <div class="guarantee-text">Si le livre ne vous apporte rien de concret dans l'année, je vous rembourse intégralement. Sans question.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const BASE = 4.99;
+    const BUMP1_PRICE = 27;
+    const BUMP2_PRICE = 17;
+
+    let bump1Active = false;
+    let bump2Active = false;
+
+    function toggleBump(n) {
+      if (n === 1) {
+        bump1Active = !bump1Active;
+        document.getElementById('bump1').classList.toggle('active', bump1Active);
+        document.getElementById('line-bump1').classList.toggle('visible', bump1Active);
+      } else {
+        bump2Active = !bump2Active;
+        document.getElementById('bump2').classList.toggle('active', bump2Active);
+        document.getElementById('line-bump2').classList.toggle('visible', bump2Active);
+      }
+      updateTotal();
+    }
+
+    function updateTotal() {
+      let total = BASE;
+      if (bump1Active) total += BUMP1_PRICE;
+      if (bump2Active) total += BUMP2_PRICE;
+      document.getElementById('total').textContent = total.toFixed(2).replace('.', ',') + '€';
+    }
+
+    function submitOrder() {
+      // TODO: Brancher sur Stripe ou autre processeur
+      // Redirection vers upsell après paiement confirmé
+      window.location.href = 'upsell-1.html';
+    }
+  </script>
+
+</body>
+</html>

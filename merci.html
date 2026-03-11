@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bienvenue — Incopiable</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C8973C;
+      --gold-light: #F5E6C8;
+      --dark: #111111;
+      --text: #1C1C1C;
+      --muted: #6B6B6B;
+      --border: #E5E3DF;
+      --bg: #FAF9F7;
+      --bg-alt: #F2EFE9;
+      --white: #FFFFFF;
+      --green: #1A7F4B;
+      --green-light: #E6F4ED;
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 18px;
+      color: var(--dark);
+      text-decoration: none;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--dark);
+      color: var(--white);
+      padding: 64px 0 56px;
+      text-align: center;
+    }
+    .hero-check {
+      width: 64px;
+      height: 64px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin: 0 auto 28px;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(30px, 5vw, 46px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+    .hero-sub {
+      font-size: 18px;
+      color: rgba(255,255,255,0.65);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 60px 0; }
+    section + section { border-top: 1px solid var(--border); }
+
+    .section-tag {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    h2 {
+      font-family: var(--serif);
+      font-size: clamp(26px, 4vw, 36px);
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--dark);
+      margin-bottom: 20px;
+    }
+    h2 em { font-style: italic; color: var(--gold); }
+    p { color: var(--text); margin-bottom: 16px; }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── CONFIRMATION BOX ── */
+    .confirm-box {
+      background: var(--green-light);
+      border: 1px solid #C3E6D5;
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 32px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .confirm-icon { font-size: 22px; flex-shrink: 0; }
+    .confirm-title {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--green);
+      margin-bottom: 4px;
+    }
+    .confirm-text { font-size: 14px; color: #2D6A4F; line-height: 1.5; }
+
+    /* ── COMMANDE RECAP ── */
+    .order-recap {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+    .order-recap-header {
+      background: var(--bg-alt);
+      padding: 14px 20px;
+      font-weight: 600;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+    }
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .order-item:last-child { border-bottom: none; }
+    .order-item-info {}
+    .order-item-name {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--dark);
+      margin-bottom: 2px;
+    }
+    .order-item-desc { font-size: 13px; color: var(--muted); }
+    .order-item-badge {
+      background: var(--gold-light);
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    /* ── ÉTAPES ── */
+    .steps { margin-top: 8px; }
+    .step {
+      display: flex;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+    }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      width: 36px;
+      height: 36px;
+      background: var(--dark);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .step-content {}
+    .step-title {
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+    .step-desc { font-size: 15px; color: var(--muted); line-height: 1.5; }
+
+    /* ── CITATION ── */
+    .quote-block {
+      border-left: 3px solid var(--gold);
+      background: var(--gold-light);
+      padding: 24px 28px;
+      border-radius: 0 10px 10px 0;
+      font-family: var(--serif);
+      font-size: 20px;
+      line-height: 1.5;
+      color: var(--dark);
+      font-style: italic;
+      margin: 32px 0;
+    }
+
+    /* ── CTA COMMUNAUTÉ ── */
+    .community-cta {
+      background: var(--dark);
+      color: var(--white);
+      border-radius: 14px;
+      padding: 36px 32px;
+      text-align: center;
+      margin-top: 40px;
+    }
+    .community-cta h3 {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+    .community-cta p {
+      color: rgba(255,255,255,0.6);
+      font-size: 15px;
+      margin-bottom: 24px;
+    }
+    .btn-community {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--white);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .btn-community:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* ── SIGNATURE ── */
+    .signature {
+      padding: 48px 0 60px;
+      text-align: center;
+    }
+    .signature-name {
+      font-family: var(--serif);
+      font-size: 22px;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+    .signature-role { font-size: 14px; color: var(--muted); }
+    .signature-ps {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 24px auto 0;
+      line-height: 1.6;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Incopiable</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-check">✓</div>
+      <h1>Bienvenue.<br>Votre commande est <em>confirmée.</em></h1>
+      <p class="hero-sub">Vous venez de prendre la décision la plus asymétrique de votre carrière. Ce que vous avez commandé va travailler pour vous longtemps après que vous l'aurez lu.</p>
+    </div>
+  </section>
+
+  <!-- CONFIRMATION + RÉCAP -->
+  <section>
+    <div class="container">
+
+      <div class="confirm-box">
+        <div class="confirm-icon">📧</div>
+        <div>
+          <div class="confirm-title">Un email de confirmation vous a été envoyé</div>
+          <div class="confirm-text">Vérifiez votre boîte mail (et le dossier spam si nécessaire). Il contient vos liens d'accès à tous vos produits.</div>
+        </div>
+      </div>
+
+      <div class="section-tag">Récapitulatif de votre commande</div>
+      <h2>Ce que vous avez obtenu</h2>
+
+      <div class="order-recap">
+        <div class="order-recap-header">Votre commande</div>
+
+        <!-- Livre toujours inclus -->
+        <div class="order-item">
+          <div class="order-item-info">
+            <div class="order-item-name">📘 Incopiable — le livre</div>
+            <div class="order-item-desc">Comment réécrire les règles de votre expertise et créer un monopole personnel</div>
+          </div>
+          <div class="order-item-badge">4,99€</div>
+        </div>
+
+        <!-- Bump 1 — affiché dynamiquement -->
+        <div class="order-item" id="item-bump1" style="display:none;">
+          <div class="order-item-info">
+            <div class="order-item-name">🗺️ 30 domaines à haut potentiel</div>
+            <div class="order-item-desc">Analysés en profondeur — racine du problème identifiée, secret non formulé, opportunité de monopole</div>
+          </div>
+          <div class="order-item-badge">27€</div>
+        </div>
+
+        <!-- Bump 2 — affiché dynamiquement -->
+        <div class="order-item" id="item-bump2" style="display:none;">
+          <div class="order-item-info">
+            <div class="order-item-name">🎧 Audiobook + 5 études de cas</div>
+            <div class="order-item-desc">Entrepreneurs qui ont créé un marché de 1 en trouvant leur secret</div>
+          </div>
+          <div class="order-item-badge">17€</div>
+        </div>
+
+        <!-- OTO 1 — affiché dynamiquement -->
+        <div class="order-item" id="item-oto1" style="display:none;">
+          <div class="order-item-info">
+            <div class="order-item-name">⚗️ L'Atelier des Premiers Principes</div>
+            <div class="order-item-desc">Méthode intensive pour extraire les vérités fondamentales de votre domaine et construire une offre inimitable</div>
+          </div>
+          <div class="order-item-badge">47€</div>
+        </div>
+
+        <!-- OTO 2 — affiché dynamiquement -->
+        <div class="order-item" id="item-oto2" style="display:none;">
+          <div class="order-item-info">
+            <div class="order-item-name">📖 Programme — Écrire un Livre Hérétique</div>
+            <div class="order-item-desc">De votre Secret brut au manuscrit publié et au book funnel actif — avec accès à vie</div>
+          </div>
+          <div class="order-item-badge">197€</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ÉTAPES SUIVANTES -->
+  <section style="background: var(--bg-alt);">
+    <div class="container">
+      <div class="section-tag">Par où commencer</div>
+      <h2>Vos <em>3 premières étapes</em></h2>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Lisez l'introduction ce soir</div>
+            <div class="step-desc">Pas besoin de tout lire d'un coup. L'introduction d'Incopiable vous donnera déjà un changement de perspective concret. Ouvrez votre email de confirmation et accédez au livre maintenant.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Identifiez votre "intuition de départ"</div>
+            <div class="step-desc">Chapitre 2 du livre. La question à se poser : "Qu'est-ce que je pense que tout le monde dans mon domaine a faux ?" Notez ce qui remonte — même si c'est flou, même si c'est imparfait. C'est le début de votre Secret.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Rejoignez la communauté</div>
+            <div class="step-desc">La recherche de votre Secret se fait mieux en communauté qu'en solitaire. Partagez votre intuition, obtenez des retours, affinez votre perspective avec d'autres qui font le même chemin.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MESSAGE PERSO -->
+  <section>
+    <div class="container">
+      <div class="section-tag">Un mot</div>
+      <h2>Ce que vous venez de faire<br>est <em>rare.</em></h2>
+
+      <p>La plupart des gens lisent un contenu sur le fait d'être unique, hochent la tête, et continuent exactement comme avant. Vous, vous avez agi.</p>
+
+      <p>Ce n'est pas anodin. Le simple fait de passer à l'action — d'investir, même modestement, dans votre propre singularité — crée une dynamique différente dans votre cerveau. Vous avez mis de la peau dans le jeu.</p>
+
+      <div class="quote-block">
+        "Un livre ne se lit pas une fois. Il mûrit. Les premières semaines, vous le lisez. Les mois suivants, il vous lit."
+      </div>
+
+      <p>Ce que vous avez entre les mains n'est pas un manuel de plus. C'est une invitation à aller chercher ce qui est déjà là — votre perspective unique, que vous n'avez pas encore eu l'occasion de formuler clairement.</p>
+
+      <p>Je suis là si vous avez des questions.</p>
+
+      <div class="community-cta">
+        <h3>Rejoignez la communauté Perspective Writing</h3>
+        <p>Des experts, coaches et créateurs qui cherchent leur Secret et construisent leur monopole personnel. Partages, retours, avancement en direct.</p>
+        <a href="#" class="btn-community">Rejoindre la communauté →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGNATURE -->
+  <div class="signature">
+    <div class="container">
+      <div class="signature-name">Maxime Lemaire</div>
+      <div class="signature-role">Auteur d'Incopiable</div>
+      <div class="signature-ps">
+        P.S. — Si vous recevez un email de bienvenue dans les prochaines minutes, c'est normal. Si vous ne le voyez pas d'ici 10 minutes, vérifiez vos spams. Et si rien n'arrive, écrivez-moi directement.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Afficher les éléments commandés selon sessionStorage
+    // (Dans un vrai funnel, ces données viendraient du backend / processeur de paiement)
+
+    if (sessionStorage.getItem('oto1') === 'true') {
+      document.getElementById('item-oto1').style.display = 'flex';
+    }
+    if (sessionStorage.getItem('oto2') === 'true') {
+      document.getElementById('item-oto2').style.display = 'flex';
+    }
+
+    // Pour la démo : afficher tous les items
+    // Retirer ces lignes en production et remplacer par des données réelles
+    // document.getElementById('item-bump1').style.display = 'flex';
+    // document.getElementById('item-bump2').style.display = 'flex';
+  </script>
+
+</body>
+</html>

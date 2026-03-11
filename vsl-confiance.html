@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comment faire en sorte que vos prospects arrivent en call déjà convaincus, avant même d'ouvrir la bouche</title>
+
+<!-- Facebook Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '559844881916934');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=559844881916934&ev=PageView&noscript=1"/></noscript>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --noir: #0a0a0a;
+    --encre: #111111;
+    --ivoire: #f5f0e8;
+    --creme: #ede8dc;
+    --or: #c9a84c;
+    --or-pale: #e8d5a0;
+    --rouge: #8b1a1a;
+    --gris: #888880;
+    --gris-clair: #333330;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--noir);
+    color: var(--ivoire);
+    font-family: 'Libre Baskerville', Georgia, serif;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.6;
+  }
+
+  /* ── VIDEO HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px 60px;
+    position: relative;
+    background: radial-gradient(ellipse 80% 60% at 50% 30%, #1a1408 0%, var(--noir) 70%);
+    border-bottom: 1px solid #2a2820;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--or), transparent);
+  }
+
+  .pre-headline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--or);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 900;
+    font-size: clamp(28px, 5vw, 62px);
+    line-height: 1.0;
+    text-align: center;
+    max-width: 900px;
+    color: var(--ivoire);
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.4s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--or);
+  }
+
+  .hero-sub {
+    font-size: clamp(15px, 2vw, 19px);
+    line-height: 1.7;
+    color: var(--creme);
+    text-align: center;
+    max-width: 620px;
+    margin-top: 28px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.65s forwards;
+  }
+
+  /* ── VIDEO BOX ── */
+  .video-wrapper {
+    width: 100%;
+    max-width: 780px;
+    margin-top: 52px;
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.9s forwards;
+  }
+
+  .video-border {
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, var(--or), transparent 40%, transparent 60%, var(--or));
+    border-radius: 4px;
+    z-index: 0;
+  }
+
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    background: #0d0c0a;
+    border-radius: 3px;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .video-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    background: linear-gradient(160deg, #161410 0%, #0a0908 100%);
+  }
+
+  .play-btn {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    border: 2px solid var(--or);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(201, 168, 76, 0.08);
+  }
+
+  .play-btn:hover {
+    background: rgba(201, 168, 76, 0.18);
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(201, 168, 76, 0.2);
+  }
+
+  .play-btn svg { margin-left: 4px; }
+
+  .video-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gris);
+  }
+
+  /* ── SECTION BASE ── */
+  section {
+    padding: 96px 24px;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .container-wide {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  /* ── SECTION PROBLEM ── */
+  .section-problem {
+    background: var(--encre);
+    border-top: 1px solid #1e1e1a;
+    border-bottom: 1px solid #1e1e1a;
+  }
+
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--or);
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--or), transparent);
+    max-width: 80px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 46px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 40px;
+    color: var(--ivoire);
+  }
+
+  .section-title em { font-style: italic; color: var(--or); }
+
+  p {
+    font-size: 17px;
+    line-height: 1.85;
+    color: #c8c3b8;
+    margin-bottom: 24px;
+  }
+
+  p strong {
+    color: var(--ivoire);
+    font-weight: 700;
+  }
+
+  /* ── PULL QUOTE ── */
+  .pull-quote {
+    border-left: 3px solid var(--or);
+    padding: 24px 32px;
+    margin: 48px 0;
+    background: rgba(201, 168, 76, 0.04);
+  }
+
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(19px, 2.5vw, 24px);
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--ivoire);
+    margin: 0;
+  }
+
+  /* ── COMPARISON ── */
+  .comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: 56px 0;
+    border: 1px solid #2a2820;
+  }
+
+  .comp-col {
+    padding: 40px 32px;
+  }
+
+  .comp-col.bad {
+    background: #120e0e;
+    border-right: 2px solid #1e1e1a;
+  }
+
+  .comp-col.good {
+    background: #0e100c;
+  }
+
+  .comp-header {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #2a2820;
+  }
+
+  .comp-col.bad .comp-header { color: #8b4040; }
+  .comp-col.good .comp-header { color: var(--or); }
+
+  .comp-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #999;
+  }
+
+  .comp-item.active { color: #c8c3b8; }
+
+  .comp-dot {
+    flex-shrink: 0;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    margin-top: 7px;
+  }
+
+  .bad .comp-dot { background: #6b3030; }
+  .good .comp-dot { background: var(--or); }
+
+  /* ── SECTION SOLUTION ── */
+  .section-solution {
+    background: linear-gradient(180deg, var(--noir) 0%, #0d0c08 100%);
+  }
+
+  .book-feature {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr;
+    gap: 64px;
+    align-items: start;
+    margin-top: 64px;
+  }
+
+  .book-cover {
+    aspect-ratio: 2/3;
+    background: linear-gradient(135deg, #1a1810 0%, #2a2418 50%, #1a1810 100%);
+    border: 1px solid #3a3420;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    box-shadow: 20px 20px 60px rgba(0,0,0,0.8), -2px 0 0 rgba(201, 168, 76, 0.15);
+  }
+
+  .book-cover::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 8px;
+    background: linear-gradient(180deg, #8a7030, #c9a84c, #8a7030);
+    box-shadow: inset -2px 0 4px rgba(0,0,0,0.5);
+  }
+
+  .book-cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--or);
+    text-align: center;
+    padding: 0 24px;
+    line-height: 1.3;
+  }
+
+  .book-cover-line {
+    width: 40px;
+    height: 1px;
+    background: var(--or);
+    opacity: 0.4;
+  }
+
+  .book-cover-author {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #7a7060;
+    text-align: center;
+  }
+
+  .benefits-list {
+    list-style: none;
+    margin: 32px 0;
+  }
+
+  .benefits-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid #1e1e1a;
+    font-size: 16px;
+    color: #c8c3b8;
+    line-height: 1.6;
+  }
+
+  .benefits-list li:first-child { border-top: 1px solid #1e1e1a; }
+
+  .benefit-num {
+    flex-shrink: 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--or);
+    opacity: 0.35;
+    line-height: 1;
+    margin-top: -2px;
+  }
+
+  .benefit-text strong {
+    display: block;
+    color: var(--ivoire);
+    margin-bottom: 4px;
+    font-size: 15px;
+  }
+
+  /* ── TESTIMONIAL ── */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 56px;
+  }
+
+  .testimonial {
+    background: #111110;
+    border: 1px solid #2a2820;
+    padding: 32px;
+    position: relative;
+  }
+
+  .testimonial::before {
+    content: '"';
+    position: absolute;
+    top: 16px; left: 24px;
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    color: var(--or);
+    opacity: 0.15;
+    line-height: 1;
+  }
+
+  .testimonial-text {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #b8b3a8;
+    font-style: italic;
+    margin-bottom: 24px;
+    padding-top: 20px;
+  }
+
+  .testimonial-author {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .author-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ivoire);
+  }
+
+  .author-role {
+    font-size: 12px;
+    color: var(--gris);
+  }
+
+  /* ── CTA ── */
+  .section-cta {
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, #1a1408 0%, var(--noir) 70%);
+    text-align: center;
+    padding: 120px 24px;
+    position: relative;
+  }
+
+  .section-cta::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--or), transparent);
+  }
+
+  .cta-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--or);
+    margin-bottom: 24px;
+  }
+
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 60px);
+    font-weight: 900;
+    line-height: 1.1;
+    max-width: 720px;
+    margin: 0 auto 32px;
+    color: var(--ivoire);
+  }
+
+  .cta-title em { font-style: italic; color: var(--or); }
+
+  .cta-sub {
+    font-size: 17px;
+    color: #999;
+    max-width: 520px;
+    margin: 0 auto 52px;
+    line-height: 1.7;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 20px 52px;
+    background: var(--or);
+    color: var(--noir);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background: var(--or-pale);
+    box-shadow: 0 0 60px rgba(201, 168, 76, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .guarantee {
+    margin-top: 36px;
+    font-size: 13px;
+    color: var(--gris);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .guarantee-icon {
+    width: 16px; height: 16px;
+    border: 1px solid var(--gris);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    flex-shrink: 0;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    width: 60px;
+    height: 1px;
+    background: var(--or);
+    opacity: 0.4;
+    margin: 0 auto 48px;
+  }
+
+  /* ── NUMBER STATS ── */
+  .stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 64px;
+    margin: 64px 0;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 900;
+    color: var(--or);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gris);
+    margin-top: 8px;
+    display: block;
+  }
+
+  /* ── SCROLLING ANIMATIONS ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── HIGHLIGHT MARKER ── */
+  mark {
+    background: rgba(201, 168, 76, 0.12);
+    color: var(--or-pale);
+    padding: 1px 4px;
+    border-radius: 2px;
+  }
+
+  /* ── PROGRESS BAR TOP ── */
+  .progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    background: var(--or);
+    z-index: 10000;
+    width: 0%;
+    transition: width 0.1s ease;
+  }
+
+  /* ── STICKY NAV ── */
+  .sticky-cta {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+    pointer-events: none;
+  }
+
+  .sticky-cta.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+
+  .sticky-btn {
+    padding: 14px 28px;
+    background: var(--or);
+    color: var(--noir);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 32px rgba(201, 168, 76, 0.4);
+    transition: all 0.3s ease;
+  }
+
+  .sticky-btn:hover {
+    background: var(--or-pale);
+    box-shadow: 0 12px 40px rgba(201, 168, 76, 0.5);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 680px) {
+    .comparison { grid-template-columns: 1fr; }
+    .book-feature { grid-template-columns: 1fr; }
+    .book-cover { aspect-ratio: 3/2; max-height: 220px; }
+    .stats-row { gap: 40px; }
+    .sticky-cta { bottom: 16px; right: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Progress bar -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- Sticky CTA -->
+<div class="sticky-cta" id="stickyCta">
+  <button class="sticky-btn" onclick="window.location.href='https://www.thecopygang.com/call'">
+    Réserver un appel →
+  </button>
+</div>
+
+<!-- ─────────────────────────────────────
+     HERO
+────────────────────────────────────── -->
+<section class="hero">
+  <div class="pre-headline">Pour les coachs et experts avec +5 ans d'expérience</div>
+  <h1 class="hero-title">
+    <em>Le Livre Hérétique :</em> comment faire en sorte que vos prospects arrivent en call déjà convaincus, avant même d'ouvrir la bouche.
+  </h1>
+  <p class="hero-sub">
+    Dans un marché où n'importe qui peut se prétendre expert du jour au lendemain, il existe un seul moyen de transmettre instantanément votre niveau — avant même d'ouvrir la bouche.
+  </p>
+
+  <div class="video-wrapper">
+    <div class="video-border"></div>
+    <div class="video-container">
+      <iframe src="https://www.loom.com/embed/3b342a686394457daf987a7a3f62bbca?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: calc(100% + 60px);"></iframe>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────
+     LE PROBLÈME
+────────────────────────────────────── -->
+<section class="section-problem">
+  <div class="container">
+    <div class="section-label reveal">Le vrai problème</div>
+
+    <h2 class="section-title reveal">
+      Le coaching a un problème de confiance.<br>
+      Et vous en payez le prix.
+    </h2>
+
+    <p class="reveal">
+      Vous vous souvenez du film <strong>Gourou</strong> ? Les réactions sur les réseaux ? Des milliers de personnes qui s'emballaient, chacune certaine de détenir la vérité sur ce qui est "bien" ou "mal" dans le coaching.
+    </p>
+
+    <p class="reveal">
+      Peu importe si vous êtes d'accord avec ce film ou non. Ce qui est intéressant, c'est ce que ça révèle : <strong>un marché entier qui n'a aucune barrière à l'entrée.</strong>
+    </p>
+
+    <div class="pull-quote reveal">
+      <p>
+        "N'importe qui peut se lever un lundi matin, se déclarer coach, et facturer 3 000 € la journée d'accompagnement. Sans diplôme. Sans expérience prouvée. Sans rien."
+      </p>
+    </div>
+
+    <p class="reveal">
+      Résultat ? Votre prospect ne fait plus la différence entre vous — qui avez <mark>10 ans dans les tranchées</mark> — et celui qui a terminé une formation de 3 semaines il y a 4 mois.
+    </p>
+
+    <p class="reveal">
+      Comparez avec un médecin. Quand quelqu'un dit "je suis docteur", personne ne demande de preuve. Tout le monde sait instinctivement ce que ça sous-entend : <strong>6 à 10 ans d'études, des dizaines de milliers d'heures, un processus de validation brutal.</strong> La confiance est immédiate. Automatique. Méritée.
+    </p>
+
+    <div class="comparison reveal">
+      <div class="comp-col bad">
+        <div class="comp-header">Ton concurrent (6 mois d'expérience)</div>
+        <div class="comp-item active"><span class="comp-dot"></span>Même site. Mêmes promesses.</div>
+        <div class="comp-item active"><span class="comp-dot"></span>Même tarif affiché.</div>
+        <div class="comp-item active"><span class="comp-dot"></span>Mêmes témoignages (ou presque).</div>
+        <div class="comp-item active"><span class="comp-dot"></span>Perçu à égalité avec toi par le marché.</div>
+      </div>
+      <div class="comp-col good">
+        <div class="comp-header">Toi (5, 8, 15 ans d'expertise)</div>
+        <div class="comp-item active"><span class="comp-dot"></span>Résultats profonds. Répétables.</div>
+        <div class="comp-item active"><span class="comp-dot"></span>Une méthodologie vraiment rodée.</div>
+        <div class="comp-item active"><span class="comp-dot"></span>Un recul que les débutants n'ont pas.</div>
+        <div class="comp-item"><span class="comp-dot"></span><em style="color:#554e48">...mais personne ne le sait vraiment.</em></div>
+      </div>
+    </div>
+
+    <p class="reveal">
+      La frustration est réelle. Vous avez l'impression de repartir à zéro à chaque prospect. De devoir sans arrêt <em>re-prouver</em> ce qui devrait aller de soi.
+    </p>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────
+     LA SOLUTION
+────────────────────────────────────── -->
+<section class="section-solution">
+  <div class="container">
+    <div class="section-label reveal">La solution</div>
+
+    <h2 class="section-title reveal">
+      Il existe un signal d'autorité<br>
+      que <em>personne ne peut falsifier.</em>
+    </h2>
+
+    <p class="reveal">
+      Pas un certificat. Pas un titre accolé à votre prénom sur LinkedIn. Pas un nombre d'abonnés.
+    </p>
+
+    <p class="reveal">
+      <strong>Un livre.</strong> Votre livre. Un objet physique qui condense des années de pensée, de méthode, d'expérience — et qui dit tout ça silencieusement, avant même que vous ayez prononcé un mot.
+    </p>
+
+    <div class="book-feature reveal">
+      <div class="book-cover">
+        <div class="book-cover-title">[Ton titre ici]</div>
+        <div class="book-cover-line"></div>
+        <div class="book-cover-author">Ton nom · Expert</div>
+      </div>
+
+      <ul class="benefits-list">
+        <li>
+          <span class="benefit-num">01</span>
+          <div class="benefit-text">
+            <strong>Une crédibilité instantanée, non négociable</strong>
+            Écrire un livre implique du travail, de la structure, de la profondeur. Votre prospect le sait instinctivement. La confiance arrive avant la première conversation.
+          </div>
+        </li>
+        <li>
+          <span class="benefit-num">02</span>
+          <div class="benefit-text">
+            <strong>Vous quittez définitivement la case "coach lambda"</strong>
+            Vous devenez l'auteur d'une méthode. Une référence sur votre sujet. Quelqu'un qu'on cite, pas qu'on compare.
+          </div>
+        </li>
+        <li>
+          <span class="benefit-num">03</span>
+          <div class="benefit-text">
+            <strong>Un outil de vente qui travaille pour vous 24h/24</strong>
+            Votre livre tourne dans les mains de vos prospects, de leurs réseaux. Chaque exemplaire est un commercial silencieux qui qualifie et convertit.
+          </div>
+        </li>
+        <li>
+          <span class="benefit-num">04</span>
+          <div class="benefit-text">
+            <strong>Vous attirez les clients qui veulent VOUS payer, vous</strong>
+            Un livre crée une sélection naturelle. Il attire les gens alignés avec votre vision — et filtre ceux qui cherchent juste le moins cher.
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────
+     STATS
+────────────────────────────────────── -->
+<section style="background: #0d0c0a; padding: 80px 24px; border-top: 1px solid #1e1e1a; border-bottom: 1px solid #1e1e1a;">
+  <div class="container">
+    <div class="stats-row reveal">
+      <div class="stat">
+        <span class="stat-num">3×</span>
+        <span class="stat-label">Plus de demandes entrantes</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">+68%</span>
+        <span class="stat-label">Taux de closing perçu</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────
+     CTA
+────────────────────────────────────── -->
+<section class="section-cta" id="cta">
+  <div class="container">
+    <div class="cta-eyebrow reveal">La prochaine étape</div>
+    <h2 class="cta-title reveal">
+      Votre expertise mérite<br>
+      d'être <em>vue.</em>
+    </h2>
+    <p class="cta-sub reveal">
+      Lors de cet appel, nous regardons ensemble comment structurer votre livre pour qu'il devienne votre meilleur outil de vente — et comment il s'intègre à votre offre actuelle pour attirer les bons clients, sans effort supplémentaire.
+    </p>
+    <p class="cta-sub reveal" style="margin-top: -16px; font-size: 15px; color: #777;">
+      Pas de pitch. Pas de pression. Un échange de 30 minutes entre experts — pour voir si c'est le bon moment pour vous.
+    </p>
+    <div class="reveal">
+      <a href="https://www.thecopygang.com/call" class="btn-primary">
+        Réserver un appel →
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<script>
+  // Progress bar
+  const progressBar = document.getElementById('progressBar');
+  const stickyCta = document.getElementById('stickyCta');
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    progressBar.style.width = progress + '%';
+
+    // Show sticky CTA after 25% scroll
+    if (progress > 25) {
+      stickyCta.classList.add('show');
+    } else {
+      stickyCta.classList.remove('show');
+    }
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

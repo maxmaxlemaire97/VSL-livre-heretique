@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Skills Bundle — 40 skills Claude pour écrire votre livre & book funnel</title>
+  <meta name="description" content="40 skills Claude pré-configurés pour passer de l'idée au livre non-fiction publié, et du livre à un book funnel qui vend vos offres high ticket." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #f2f2f2;
+      --bg-alt:    #e8e8e8;
+      --bg-dark:   #1a1a1a;
+      --text:      #1a1a1a;
+      --muted:     #6b6b6b;
+      --accent:    #e8732a;
+      --accent-dim: rgba(232,115,42,0.14);
+      --border:    #d0d0d0;
+      --border-dk: rgba(255,255,255,0.08);
+      --blue:      #7eadff;
+      --green:     #5ec97a;
+      --mono:      'JetBrains Mono', 'Courier New', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--mono);
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* CRT scanlines */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.016) 2px,
+        rgba(0,0,0,0.016) 4px
+      );
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ── LAYOUT ── */
+    .wrap      { max-width: 760px;  margin: 0 auto; padding: 0 28px; }
+    .wrap--wide { max-width: 1020px; margin: 0 auto; padding: 0 28px; }
+
+    /* ── TYPOGRAPHY ── */
+    p { color: var(--muted); margin-bottom: 16px; }
+    p:last-child { margin-bottom: 0; }
+    p strong { color: var(--text); font-weight: 500; }
+    a { color: var(--accent); text-decoration: none; }
+
+    h2 {
+      font-size: clamp(22px, 3.2vw, 34px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    h2 .hi { color: var(--accent); }
+
+    /* ── TERMINAL PROMPT ── */
+    .prompt {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      opacity: 0.8;
+      margin-bottom: 22px;
+    }
+    .prompt::before { content: '% '; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(242,242,242,0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 13px 0;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-logo .dot { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent);
+      color: var(--bg);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 8px 16px;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.82; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--bg-dark);
+      padding: 96px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(232,115,42,0.06) 0%, transparent 60%),
+                  radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.45) 100%);
+      pointer-events: none;
+    }
+    .hero .wrap { position: relative; }
+    .hero-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(232,115,42,0.35);
+      padding: 5px 13px;
+      margin-bottom: 36px;
+    }
+    .hero h1 {
+      font-size: clamp(26px, 4.2vw, 46px);
+      font-weight: 700;
+      line-height: 1.17;
+      color: #f5f5f0;
+      letter-spacing: -0.025em;
+      margin-bottom: 22px;
+      max-width: 660px;
+    }
+    .hero h1 .hi { color: var(--accent); }
+    .hero-sub {
+      font-size: 14.5px;
+      color: rgba(245,245,240,0.62);
+      margin-bottom: 52px;
+      max-width: 540px;
+      font-weight: 400;
+      line-height: 1.85;
+    }
+    .hero-cta-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--bg-dark);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 14px 30px;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(232,115,42,0.38);
+    }
+    .btn--outline {
+      background: transparent;
+      border: 1px solid rgba(232,115,42,0.45);
+      color: var(--accent);
+    }
+    .btn--outline:hover { box-shadow: none; border-color: var(--accent); }
+    .hero-price-note {
+      font-size: 12px;
+      color: rgba(245,245,240,0.28);
+    }
+    .hero-price-note s { color: rgba(245,245,240,0.18); }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 72px;
+      padding-top: 36px;
+      border-top: 1px solid var(--border-dk);
+      flex-wrap: wrap;
+    }
+    .stat-num {
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+    .stat-label {
+      font-size: 10px;
+      color: rgba(245,245,240,0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 84px 0; }
+    section + section { border-top: 1px solid var(--border); }
+
+    /* ── PAIN CARDS ── */
+    .pain-grid { display: grid; gap: 10px; margin-top: 36px; }
+    .pain-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      padding: 15px 20px;
+      font-size: 13px;
+      color: var(--text);
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      line-height: 1.7;
+    }
+    .pain-card::before {
+      content: '>';
+      color: var(--accent);
+      flex-shrink: 0;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+    .pain-card em { color: var(--muted); font-style: italic; }
+
+    /* ── FOR WHO ── */
+    .fw-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 36px;
+    }
+    @media (max-width: 580px) { .fw-grid { grid-template-columns: 1fr; } }
+    .fw-card {
+      padding: 28px 26px;
+      border: 1px solid var(--border);
+    }
+    .fw-card--yes { background: var(--bg-dark); border-color: transparent; }
+    .fw-card--no  { background: var(--bg-alt); }
+    .fw-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .fw-card--yes .fw-label { color: var(--accent); }
+    .fw-card--no  .fw-label { color: var(--muted); }
+    .fw-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .fw-list li {
+      font-size: 12px;
+      line-height: 1.65;
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+    }
+    .fw-card--yes .fw-list li { color: rgba(245,245,240,0.72); }
+    .fw-card--no  .fw-list li { color: var(--muted); }
+    .fw-mark { flex-shrink: 0; margin-top: 2px; }
+    .fw-card--yes .fw-mark { color: var(--green); }
+    .fw-card--no  .fw-mark { color: rgba(0,0,0,0.18); }
+
+    /* ── HOW IT WORKS ── */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 40px;
+    }
+    @media (max-width: 600px) { .steps { grid-template-columns: 1fr; } }
+    .step {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      padding: 28px 24px;
+    }
+    .step-num {
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--accent);
+      opacity: 0.28;
+      line-height: 1;
+      margin-bottom: 18px;
+    }
+    .step h3 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .step p { font-size: 12px; margin: 0; line-height: 1.7; }
+
+    /* ── FILE TREE ── */
+    .file-tree {
+      background: #1c1c1c;
+      color: #c8c8c8;
+      padding: 32px 36px;
+      margin-top: 36px;
+      font-size: 12.5px;
+      line-height: 2.05;
+      overflow-x: auto;
+      border: 1px solid #2a2a2a;
+    }
+    .tree-root { color: var(--accent); font-weight: 700; margin-bottom: 4px; }
+    .tree-folder { color: var(--blue); font-weight: 600; }
+    .tree-file  { color: #c8c8c8; }
+    .tree-ext   { color: rgba(200,200,200,0.3); }
+    .i1 { padding-left: 18px; }
+    .i2 { padding-left: 36px; }
+    .tree-con { color: rgba(200,200,200,0.22); }
+    .tree-badge {
+      display: inline-block;
+      font-size: 9.5px;
+      background: rgba(232,115,42,0.18);
+      color: var(--accent);
+      padding: 1px 8px;
+      margin-left: 10px;
+      vertical-align: middle;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── PROFILES ── */
+    .profiles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(196px, 1fr));
+      gap: 12px;
+      margin-top: 36px;
+    }
+    .profile-card {
+      border: 1px solid var(--border);
+      padding: 20px 18px;
+      background: var(--bg);
+      transition: border-color 0.2s;
+    }
+    .profile-card:hover { border-color: var(--accent); }
+    .profile-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .profile-card p { font-size: 12px; margin: 0; line-height: 1.65; }
+
+    /* ── PRICING ── */
+    .pricing-box {
+      background: var(--bg-dark);
+      padding: 48px;
+      margin-top: 40px;
+      border: 1px solid #2a2a2a;
+    }
+    .pricing-head { text-align: center; margin-bottom: 40px; }
+    .pricing-head .label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(245,245,240,0.65);
+      margin-bottom: 16px;
+    }
+    .price-big {
+      font-size: 72px;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+    .price-currency {
+      font-size: 32px;
+      vertical-align: super;
+      font-weight: 500;
+    }
+    .price-note {
+      font-size: 12px;
+      color: rgba(245,245,240,0.4);
+      margin-top: 10px;
+    }
+
+    .value-stack { list-style: none; border-top: 1px solid rgba(255,255,255,0.12); padding-top: 28px; margin-bottom: 28px; }
+    .value-stack li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      font-size: 13.5px;
+      gap: 16px;
+    }
+    .v-name { color: rgba(245,245,240,0.88); }
+    .v-sub  { color: rgba(245,245,240,0.42); font-size: 11px; margin-left: 6px; }
+    .v-price { color: rgba(245,245,240,0.38); text-decoration: line-through; font-size: 12px; flex-shrink: 0; }
+    .value-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      margin-bottom: 28px;
+    }
+    .value-total .t-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(245,245,240,0.5); }
+    .value-total .t-amount { font-size: 18px; color: rgba(245,245,240,0.35); text-decoration: line-through; }
+
+    .pricing-cta {
+      display: block;
+      text-align: center;
+      background: var(--accent);
+      color: var(--bg-dark);
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 17px 32px;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .pricing-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(232,115,42,0.42);
+    }
+    .pricing-sub {
+      text-align: center;
+      font-size: 11px;
+      color: rgba(245,245,240,0.2);
+      margin-top: 16px;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── GUARANTEE ── */
+    .guarantee-box {
+      display: flex;
+      gap: 22px;
+      align-items: flex-start;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      padding: 26px 28px;
+      margin-top: 20px;
+    }
+    .g-icon { font-size: 30px; flex-shrink: 0; }
+    .guarantee-box h3 { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .guarantee-box p { font-size: 12px; margin: 0; line-height: 1.7; }
+
+    /* ── FAQ ── */
+    .faq-list { margin-top: 36px; border-top: 1px solid var(--border); }
+    details { border-bottom: 1px solid var(--border); }
+    summary {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      padding: 17px 0;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: '+'; color: var(--accent); font-size: 18px; font-weight: 400; flex-shrink: 0; }
+    details[open] summary::after { content: '−'; }
+    details p { font-size: 12.5px; color: var(--muted); padding: 0 0 18px; max-width: 620px; line-height: 1.78; }
+
+    /* ── FINAL CTA ── */
+    .cta-section {
+      background: var(--bg-dark);
+      padding: 104px 0;
+      text-align: center;
+    }
+    .cta-section h2 { color: #f5f5f0; margin-bottom: 12px; }
+    .cta-section h2 .hi { color: var(--accent); }
+    .cta-section > .wrap > p { color: rgba(245,245,240,0.38); font-size: 13px; margin-bottom: 40px; }
+    .cta-fine {
+      margin-top: 22px;
+      font-size: 11px;
+      color: rgba(245,245,240,0.18);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border); padding: 30px 0; text-align: center; }
+    footer p { font-size: 11px; color: var(--muted); margin: 0; letter-spacing: 0.02em; }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 520px) {
+      .pricing-box { padding: 28px 22px; }
+      .file-tree { padding: 24px 20px; }
+      .hero-stats { gap: 28px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── NAV ── -->
+  <nav>
+    <div class="wrap--wide nav-inner">
+      <a href="#" class="nav-logo">book-skills<span class="dot">.</span>bundle</a>
+      <a href="#commander" class="nav-cta">Obtenir le pack — 15€ →</a>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-badge">Pack Skills Claude · 40 Skills · Claude Code &amp; Cowork</div>
+      <h1>Votre livre non-fiction <span class="hi">écrit, publié, et transformé en machine à leads</span> — avec Claude.</h1>
+      <p class="hero-sub">40 skills pré-configurés pour passer de l'idée au manuscrit complet, et du manuscrit à un book funnel qui attire et convertit vos clients high ticket. Sans page blanche. Sans procrastination. Sans ghost-writer à 10 000€.</p>
+      <div class="hero-cta-row">
+        <a href="#commander" class="btn">Obtenir le pack — 15€ →</a>
+        <span class="hero-price-note"><s>Valeur : 535€</s> · Prix de lancement</span>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">40</div>
+          <div class="stat-label">Skills Claude</div>
+        </div>
+        <div>
+          <div class="stat-num">5</div>
+          <div class="stat-label">Catégories</div>
+        </div>
+        <div>
+          <div class="stat-num">15€</div>
+          <div class="stat-label">Paiement unique</div>
+        </div>
+        <div>
+          <div class="stat-num">30j</div>
+          <div class="stat-label">Garantie remboursement</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PAIN POINTS ── -->
+  <section>
+    <div class="wrap">
+      <div class="prompt">./pain-points.sh</div>
+      <h2>Ce que vous vous dites depuis <span class="hi">trop longtemps.</span></h2>
+      <div class="pain-grid">
+        <div class="pain-card"><em>"Je veux écrire mon livre depuis des années. Mais à chaque fois que je m'assieds devant une page blanche, je ne sais pas par où commencer — et je referme l'ordinateur."</em></div>
+        <div class="pain-card"><em>"J'ai commencé 3 fois. J'ai 3 brouillons incomplets quelque part dans mes fichiers. Et ma confiance en moi comme auteur a pris du plomb dans l'aile à chaque fois."</em></div>
+        <div class="pain-card"><em>"Je sais que mes clients high ticket auraient confiance beaucoup plus vite si j'avais un livre. Mais ça me paraît trop long, trop compliqué, trop chronophage."</em></div>
+        <div class="pain-card"><em>"J'ai l'expertise. J'ai les idées. J'ai même le titre dans la tête. Ce qui me manque, c'est quelqu'un qui me guide pas à pas dans la structure et la rédaction."</em></div>
+        <div class="pain-card"><em>"Un ghost-writer ? Oui, mais à 10 000–20 000€ le projet, je ne peux pas me permettre de tester l'idée. Et de toute façon, ce serait sa voix, pas la mienne."</em></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TRUST ARGUMENT ── -->
+  <section style="background:var(--bg-dark); border-top:none; padding:88px 0;">
+    <div class="wrap">
+      <div class="prompt" style="color:var(--accent);">./why-a-book-funnel.sh</div>
+      <h2 style="color:#f5f5f0;">Sur internet, tout le monde est "expert".<br><span class="hi">Un livre, c'est autre chose.</span></h2>
+      <p style="color:rgba(245,245,240,0.5); font-size:14px; max-width:580px; margin-bottom:48px;">La confiance ne se décrète pas. Elle se construit. Et dans un marché web saturé de contenus, de promesses et de "gourous" en tout genre, un livre non-fiction crée une asymétrie radicale en votre faveur.</p>
+
+      <div style="display:grid; gap:2px; grid-template-columns:1fr 1fr; margin-bottom:48px;">
+        <div style="background:#1e1e1e; border:1px solid #2a2a2a; padding:28px 26px;">
+          <div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:14px;">Sans livre</div>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+            <li style="font-size:12px; color:rgba(245,245,240,0.38); display:flex; gap:9px;"><span style="flex-shrink:0; color:rgba(245,245,240,0.18);">—</span><span>Vos prospects vous comparent à d'autres sur une landing page</span></li>
+            <li style="font-size:12px; color:rgba(245,245,240,0.38); display:flex; gap:9px;"><span style="flex-shrink:0; color:rgba(245,245,240,0.18);">—</span><span>Vous devez convaincre à chaque appel de discovery que vous êtes légitime</span></li>
+            <li style="font-size:12px; color:rgba(245,245,240,0.38); display:flex; gap:9px;"><span style="flex-shrink:0; color:rgba(245,245,240,0.18);">—</span><span>Le prospect arrive sceptique — et vous payez le prix de la méfiance générale du marché</span></li>
+            <li style="font-size:12px; color:rgba(245,245,240,0.38); display:flex; gap:9px;"><span style="flex-shrink:0; color:rgba(245,245,240,0.18);">—</span><span>Votre autorité ne survit pas à la fin de votre feed ou de votre dernière newsletter</span></li>
+          </ul>
+        </div>
+        <div style="background:#1e1e1e; border:1px solid rgba(232,115,42,0.35); padding:28px 26px;">
+          <div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin-bottom:14px;">Avec un book funnel</div>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+            <li style="font-size:12px; color:rgba(245,245,240,0.78); display:flex; gap:9px;"><span style="flex-shrink:0; color:var(--green);">→</span><span>Vos prospects ont lu 150 pages de votre pensée avant de vous appeler</span></li>
+            <li style="font-size:12px; color:rgba(245,245,240,0.78); display:flex; gap:9px;"><span style="flex-shrink:0; color:var(--green);">→</span><span>Ils arrivent pré-convaincus, pré-qualifiés — et souvent déjà prêts à acheter</span></li>
+            <li style="font-size:12px; color:rgba(245,245,240,0.78); display:flex; gap:9px;"><span style="flex-shrink:0; color:var(--green);">→</span><span>Le livre travaille 24h/24 pendant que vous dormez</span></li>
+            <li style="font-size:12px; color:rgba(245,245,240,0.78); display:flex; gap:9px;"><span style="flex-shrink:0; color:var(--green);">→</span><span>Votre autorité ne dépend plus d'un algorithme, d'une plateforme ou d'un fil d'actu</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="border-left:3px solid var(--accent); padding:20px 28px; background:rgba(232,115,42,0.07);">
+        <p style="font-size:16px; color:rgba(245,245,240,0.85); font-style:italic; line-height:1.7; margin:0;">"Un client qui a lu votre livre ne cherche pas à être convaincu. Il cherche à commencer. C'est le seul actif marketing qui transforme un inconnu en client prêt-à-acheter — sans que vous ayez dit un mot."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── NO BARRIER ── -->
+  <section>
+    <div class="wrap">
+      <div class="prompt">./no-barrier-to-entry.sh</div>
+      <h2>Dans le monde du business en ligne, <span class="hi">il n'y a pas d'accès au métier.</span></h2>
+
+      <p>Contrairement à des métiers comme avocat, architecte ou médecin, les métiers de coaching et d'accompagnement n'ont pas de barrière à l'entrée.</p>
+
+      <p><strong>L'avantage :</strong> n'importe qui peut se lancer et développer un business sans demander la permission à qui que ce soit.</p>
+
+      <p><strong>L'inconvénient :</strong> tout le monde s'y est mis, et la confiance globale du marché vis-à-vis du grand public est vraiment mauvaise. Et à juste titre. Il y a quand même beaucoup de gens qui font n'importe quoi, même s'ils ont de bonnes intentions.</p>
+
+      <p>Les métiers classiques comme avocat, architecte ou médecin ont une bonne réputation car ils ont un diplôme qui témoigne de leur crédibilité immédiatement.</p>
+
+      <p>Vous, vous ne pouvez pas faire ça. Et vous n'allez pas vous mettre à faire des études de 3 ou 5 ans maintenant. Vous n'avez pas que ça à faire.</p>
+
+      <p><strong>Par contre, ce que vous pouvez faire :</strong></p>
+
+      <div style="background:var(--bg-alt); border:1px solid var(--border); border-left:3px solid var(--accent); padding:28px 32px; margin:28px 0;">
+        <p style="font-size:20px; font-weight:700; color:var(--text); margin-bottom:16px;">C'est écrire un livre.</p>
+        <p>Pas besoin de 5 ans et 35 000€ d'emprunt pour faire des études.<br>Passez simplement 6 mois à écrire un livre.</p>
+        <p>C'est un actif qui prouve immédiatement votre compétence et transmet de la confiance immédiatement. Qui aura pris le temps et l'effort d'écrire, d'éditer et publier un livre — ou d'investir dans un ghostwriter pour l'aider — sans être un vrai expert digne de ce nom ?</p>
+        <p style="font-size:16px; font-weight:700; color:var(--text);">Personne.</p>
+        <p style="margin-bottom:0;">Voilà pourquoi écrire un livre est si puissant sur ce marché.<br><strong>C'est votre gage de confiance dans un marché à très faible confiance.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOR WHO ── -->
+  <section>
+    <div class="wrap">
+      <div class="prompt">./who-is-this-for.sh</div>
+      <h2>Ce pack est <span class="hi">fait pour vous</span> si…</h2>
+      <div class="fw-grid">
+        <div class="fw-card fw-card--yes">
+          <div class="fw-label">✓ &nbsp;Pour vous</div>
+          <ul class="fw-list">
+            <li><span class="fw-mark">→</span><span>Vous êtes expert(e) (coach, consultant, thérapeute, formateur) avec une offre high ticket à vendre</span></li>
+            <li><span class="fw-mark">→</span><span>Vous comprenez qu'un livre bien construit est le meilleur argument commercial qui existe à ce niveau de prix</span></li>
+            <li><span class="fw-mark">→</span><span>Vous utilisez déjà Claude ou êtes prêt(e) à l'adopter comme outil de travail principal</span></li>
+            <li><span class="fw-mark">→</span><span>Vous voulez aller vite : un premier manuscrit en semaines, pas en années</span></li>
+            <li><span class="fw-mark">→</span><span>Vous voulez rester aux commandes de votre livre — votre voix, vos idées, votre méthode</span></li>
+          </ul>
+        </div>
+        <div class="fw-card fw-card--no">
+          <div class="fw-label">✕ &nbsp;Pas pour vous</div>
+          <ul class="fw-list">
+            <li><span class="fw-mark">✕</span><span>Vous cherchez à écrire un roman ou une œuvre de fiction</span></li>
+            <li><span class="fw-mark">✕</span><span>Vous voulez écrire pour la gloire littéraire, pas pour votre business</span></li>
+            <li><span class="fw-mark">✕</span><span>Vous n'avez pas d'expertise réelle à transmettre (ces skills articulent votre expertise, ils ne la créent pas)</span></li>
+            <li><span class="fw-mark">✕</span><span>Vous préférez déléguer intégralement à un ghost-writer plutôt que d'être impliqué(e) dans l'écriture</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ── -->
+  <section>
+    <div class="wrap">
+      <div class="prompt">./how-it-works.sh</div>
+      <h2>Comment ça <span class="hi">fonctionne.</span></h2>
+      <p>Vous n'avez pas besoin d'apprendre à prompter Claude. Les skills font ce travail à votre place. Vous apportez votre expertise. Ils apportent la méthode.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h3>Téléchargez & installez</h3>
+          <p>Vous recevez un fichier ZIP organisé par catégorie. Installation en moins de 5 minutes dans Claude Code ou Claude Cowork (abonnement Pro ou Max requis).</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h3>Activez un skill</h3>
+          <p>Tapez le nom du skill dans Claude. Il s'active, pose les bonnes questions, et vous guide step by step vers un livrable concret.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3>Avancez sans blocage</h3>
+          <p>Chaque session produit un résultat réel : titre, plan de chapitre, page de vente, séquence email. Aucune page blanche.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SKILLS LIST ── -->
+  <section>
+    <div class="wrap">
+      <div class="prompt">ls -la book-funnel-skills/</div>
+      <h2>Les <span class="hi">40 skills</span> inclus dans le pack.</h2>
+      <p>5 catégories qui couvrent l'intégralité du parcours : de l'idée initiale jusqu'au funnel opérationnel qui génère des leads qualifiés pour votre offre high ticket.</p>
+
+      <div class="file-tree">
+        <div class="tree-root">book-funnel-skills/ &nbsp;<span style="color:rgba(200,200,200,0.28);font-size:11px">40 skills · 5 catégories</span></div>
+
+        <div class="i1"><span class="tree-con">├──</span> <span class="tree-folder">01_ideation-structure/</span><span class="tree-badge">8 skills</span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">book-positioning-finder<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">niche-problem-excavator<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">book-title-generator<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">subtitle-optimizer<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">core-promise-definer<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">table-of-contents-architect<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">chapter-hook-writer<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">└──</span> <span class="tree-file">book-to-offer-bridge-builder<span class="tree-ext">.md</span></span></div>
+
+        <div class="i1"><span class="tree-con">├──</span> <span class="tree-folder">02_redaction-contenu/</span><span class="tree-badge">8 skills</span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">chapter-outline-generator<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">story-extractor<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">case-study-formatter<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">framework-namer<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">contrarian-pov-generator<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">expert-positioning-writer<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">introduction-sequence-writer<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">└──</span> <span class="tree-file">conclusion-cta-writer<span class="tree-ext">.md</span></span></div>
+
+        <div class="i1"><span class="tree-con">├──</span> <span class="tree-folder">03_funnel-marketing/</span><span class="tree-badge">10 skills</span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">book-funnel-architect<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">optin-page-writer<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">thank-you-page-writer<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">book-sales-page-writer<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">order-bump-writer<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">oto-upsell-script-writer<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">downsell-writer<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">email-welcome-sequence-writer<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">indoctrination-email-writer<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">└──</span> <span class="tree-file">application-email-writer<span class="tree-ext">.md</span></span></div>
+
+        <div class="i1"><span class="tree-con">├──</span> <span class="tree-folder">04_promotion-distribution/</span><span class="tree-badge">8 skills</span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">amazon-description-optimizer<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">book-launch-plan-generator<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">podcast-pitch-writer<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">linkedin-book-promo-posts<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">cold-email-outreach-writer<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">book-review-request-email<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">guest-post-pitch-writer<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">└──</span> <span class="tree-file">amazon-a-plus-content-writer<span class="tree-ext">.md</span></span></div>
+
+        <div class="i1"><span class="tree-con">└──</span> <span class="tree-folder">05_conversion-qualification/</span><span class="tree-badge">6 skills</span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">reader-segmentation-quiz<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">vsl-script-writer<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">webinar-script-from-book<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">high-ticket-application-form<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">├──</span> <span class="tree-file">objection-handler<span class="tree-ext">.md</span></span></div>
+        <div class="i2"><span class="tree-con">└──</span> <span class="tree-file">social-proof-request-writer<span class="tree-ext">.md</span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW TO USE ── -->
+  <section style="background:var(--bg-dark); border-top:none; padding:88px 0;">
+    <div class="wrap">
+      <div class="prompt" style="color:var(--accent);">./write-your-book.sh</div>
+      <h2 style="color:#f5f5f0;">Comment les utiliser pour <span class="hi">écrire votre livre ?</span></h2>
+      <p style="color:rgba(245,245,240,0.55); font-size:14px; max-width:580px; margin-bottom:48px;">La première chose que vous faites après l'installation : vous tapez <code style="background:rgba(232,115,42,0.15); color:var(--accent); padding:2px 7px; font-family:var(--mono);">/book-positioning-finder</code> dans Claude. Pas d'explication préalable. Pas de contexte à préparer. Le skill prend la main.</p>
+
+      <p style="color:rgba(245,245,240,0.55); font-size:14px; max-width:580px; margin-bottom:12px;">Il vous pose quatre questions. Quelle est votre offre, et à qui. Quel résultat vous produisez chez vos clients. Quels obstacles vos prospects rencontrent avant de travailler avec vous. Et quelle idée vous défendez — que personne d'autre dans votre domaine ne défend vraiment.</p>
+
+      <p style="color:rgba(245,245,240,0.55); font-size:14px; max-width:580px; margin-bottom:48px;">En 20 minutes, vous avez un positionnement clair, un angle différenciateur, et la promesse centrale de votre livre. Ce sont les fondations. Tout le reste s'y appuie.</p>
+
+      <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(245,245,240,0.35); margin-bottom:20px;">Les 8 premières sessions — dans l'ordre.</div>
+
+      <div style="display:flex; flex-direction:column; gap:2px; margin-bottom:48px;">
+        <div style="background:#1e1e1e; border:1px solid #2a2a2a; padding:22px 26px;">
+          <div style="display:flex; gap:16px; align-items:baseline; margin-bottom:8px;">
+            <span style="font-size:10px; font-weight:700; color:var(--accent); opacity:0.5; flex-shrink:0;">01</span>
+            <span style="font-size:13px; font-weight:700; color:rgba(245,245,240,0.88);">Positionnement</span>
+            <code style="font-size:10px; background:rgba(232,115,42,0.12); color:var(--accent); padding:2px 7px; font-family:var(--mono); margin-left:auto; flex-shrink:0;">/book-positioning-finder</code>
+          </div>
+          <p style="font-size:12px; color:rgba(245,245,240,0.42); margin:0; line-height:1.7;">Votre sujet, votre angle, votre promesse. Ce que votre livre va changer dans la tête de vos lecteurs — et pourquoi eux, pas d'autres.</p>
+        </div>
+        <div style="background:#1e1e1e; border:1px solid #2a2a2a; padding:22px 26px;">
+          <div style="display:flex; gap:16px; align-items:baseline; margin-bottom:8px; flex-wrap:wrap;">
+            <span style="font-size:10px; font-weight:700; color:var(--accent); opacity:0.5; flex-shrink:0;">02</span>
+            <span style="font-size:13px; font-weight:700; color:rgba(245,245,240,0.88);">Titre</span>
+            <code style="font-size:10px; background:rgba(232,115,42,0.12); color:var(--accent); padding:2px 7px; font-family:var(--mono); margin-left:auto; flex-shrink:0;">/book-title-generator + /subtitle-optimizer</code>
+          </div>
+          <p style="font-size:12px; color:rgba(245,245,240,0.42); margin:0; line-height:1.7;">Vous arrivez avec votre promesse. Vous repartez avec trois titres forts et un sous-titre qui convertit.</p>
+        </div>
+        <div style="background:#1e1e1e; border:1px solid #2a2a2a; padding:22px 26px;">
+          <div style="display:flex; gap:16px; align-items:baseline; margin-bottom:8px;">
+            <span style="font-size:10px; font-weight:700; color:var(--accent); opacity:0.5; flex-shrink:0;">03</span>
+            <span style="font-size:13px; font-weight:700; color:rgba(245,245,240,0.88);">Plan</span>
+            <code style="font-size:10px; background:rgba(232,115,42,0.12); color:var(--accent); padding:2px 7px; font-family:var(--mono); margin-left:auto; flex-shrink:0;">/table-of-contents-architect</code>
+          </div>
+          <p style="font-size:12px; color:rgba(245,245,240,0.42); margin:0; line-height:1.7;">Le skill transforme votre promesse en architecture complète : parties, chapitres, logique de progression. Votre livre a une colonne vertébrale.</p>
+        </div>
+        <div style="background:#1e1e1e; border:1px solid #2a2a2a; padding:22px 26px;">
+          <div style="display:flex; gap:16px; align-items:baseline; margin-bottom:8px;">
+            <span style="font-size:10px; font-weight:700; color:var(--accent); opacity:0.5; flex-shrink:0;">04</span>
+            <span style="font-size:13px; font-weight:700; color:rgba(245,245,240,0.88);">Vos histoires</span>
+            <code style="font-size:10px; background:rgba(232,115,42,0.12); color:var(--accent); padding:2px 7px; font-family:var(--mono); margin-left:auto; flex-shrink:0;">/story-extractor</code>
+          </div>
+          <p style="font-size:12px; color:rgba(245,245,240,0.42); margin:0; line-height:1.7;">Le skill vous interviewe. Vous parlez. Il structure. Vous repartez avec une banque de 10 à 15 histoires tirées de votre expérience réelle — prêtes à être placées dans les chapitres.</p>
+        </div>
+        <div style="background:#1e1e1e; border:1px solid #2a2a2a; padding:22px 26px;">
+          <div style="display:flex; gap:16px; align-items:baseline; margin-bottom:8px;">
+            <span style="font-size:10px; font-weight:700; color:var(--accent); opacity:0.5; flex-shrink:0;">05</span>
+            <span style="font-size:13px; font-weight:700; color:rgba(245,245,240,0.88);">Vos frameworks</span>
+            <code style="font-size:10px; background:rgba(232,115,42,0.12); color:var(--accent); padding:2px 7px; font-family:var(--mono); margin-left:auto; flex-shrink:0;">/framework-namer</code>
+          </div>
+          <p style="font-size:12px; color:rgba(245,245,240,0.42); margin:0; line-height:1.7;">Vous décrivez votre méthode à l'oral. Le skill identifie vos frameworks implicites, les nomme, les rend mémorables. Votre expertise devient une propriété intellectuelle.</p>
+        </div>
+        <div style="background:#1e1e1e; border:1px solid #2a2a2a; padding:22px 26px;">
+          <div style="display:flex; gap:16px; align-items:baseline; margin-bottom:8px; flex-wrap:wrap;">
+            <span style="font-size:10px; font-weight:700; color:var(--accent); opacity:0.5; flex-shrink:0;">06</span>
+            <span style="font-size:13px; font-weight:700; color:rgba(245,245,240,0.88);">Premier chapitre</span>
+            <code style="font-size:10px; background:rgba(232,115,42,0.12); color:var(--accent); padding:2px 7px; font-family:var(--mono); margin-left:auto; flex-shrink:0;">/chapter-outline-generator + /introduction-sequence-writer</code>
+          </div>
+          <p style="font-size:12px; color:rgba(245,245,240,0.42); margin:0; line-height:1.7;">Plan détaillé, ouverture rédigée. Vous écrivez — mais avec un rail. La page blanche n'existe plus.</p>
+        </div>
+        <div style="background:#1e1e1e; border:1px solid #2a2a2a; padding:22px 26px;">
+          <div style="display:flex; gap:16px; align-items:baseline; margin-bottom:8px;">
+            <span style="font-size:10px; font-weight:700; color:var(--accent); opacity:0.5; flex-shrink:0;">07→N</span>
+            <span style="font-size:13px; font-weight:700; color:rgba(245,245,240,0.88);">Les chapitres restants</span>
+            <code style="font-size:10px; background:rgba(232,115,42,0.12); color:var(--accent); padding:2px 7px; font-family:var(--mono); margin-left:auto; flex-shrink:0;">/chapter-outline-generator</code>
+          </div>
+          <p style="font-size:12px; color:rgba(245,245,240,0.42); margin:0; line-height:1.7;">Un chapitre par session. Le skill pose toujours les mêmes questions : quel est l'objectif de transformation, quelle histoire ouvre le chapitre, quel framework il illustre, comment il se ferme. Vous avancez sans vous perdre.</p>
+        </div>
+        <div style="background:#1e1e1e; border:1px solid rgba(232,115,42,0.35); padding:22px 26px;">
+          <div style="display:flex; gap:16px; align-items:baseline; margin-bottom:8px; flex-wrap:wrap;">
+            <span style="font-size:10px; font-weight:700; color:var(--accent); opacity:0.5; flex-shrink:0;">FIN</span>
+            <span style="font-size:13px; font-weight:700; color:rgba(245,245,240,0.88);">Le pont vers votre offre</span>
+            <code style="font-size:10px; background:rgba(232,115,42,0.12); color:var(--accent); padding:2px 7px; font-family:var(--mono); margin-left:auto; flex-shrink:0;">/book-to-offer-bridge-builder + /conclusion-cta-writer</code>
+          </div>
+          <p style="font-size:12px; color:rgba(245,245,240,0.42); margin:0; line-height:1.7;">La conclusion de votre livre n'est pas un remerciement. C'est la transition naturelle vers votre offre high ticket. Vos lecteurs ne tombent pas sur une vente — ils arrivent à une évidence.</p>
+        </div>
+      </div>
+
+      <div style="border-left:3px solid rgba(232,115,42,0.4); padding:20px 28px; background:rgba(255,255,255,0.03);">
+        <div style="font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:rgba(245,245,240,0.3); margin-bottom:16px;">En semaines, ça ressemble à ça.</div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div style="font-size:12.5px; color:rgba(245,245,240,0.62); display:flex; gap:12px;"><span style="color:var(--accent); flex-shrink:0; font-weight:700;">S1</span><span>Votre livre est positionné, titré, structuré.</span></div>
+          <div style="font-size:12.5px; color:rgba(245,245,240,0.62); display:flex; gap:12px;"><span style="color:var(--accent); flex-shrink:0; font-weight:700;">S2</span><span>Vos histoires et vos frameworks sont extraits et organisés.</span></div>
+          <div style="font-size:12.5px; color:rgba(245,245,240,0.62); display:flex; gap:12px;"><span style="color:var(--accent); flex-shrink:0; font-weight:700;">S3–6</span><span>Un chapitre par session, trois sessions par semaine. Vous avez un manuscrit.</span></div>
+          <div style="font-size:12.5px; color:rgba(245,245,240,0.62); display:flex; gap:12px;"><span style="color:var(--accent); flex-shrink:0; font-weight:700;">S7</span><span>Conclusion, relecture, transition vers le funnel.</span></div>
+        </div>
+        <p style="font-size:14px; font-weight:700; color:rgba(245,245,240,0.88); margin-top:20px; margin-bottom:0;">Un livre complet. Sept semaines. Sans page blanche, sans blocage, sans ghost-writer.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROFILES ── -->
+  <section>
+    <div class="wrap">
+      <div class="prompt">./who-uses-this.sh</div>
+      <h2>Des experts de tous profils — <span class="hi">une seule condition.</span></h2>
+      <p>Avoir quelque chose de réel à transmettre, et une offre high ticket à vendre davantage. Le reste, les skills s'en chargent.</p>
+      <div class="profiles-grid">
+        <div class="profile-card">
+          <div class="profile-label">Coach business</div>
+          <p>Attirez des clients qui arrivent déjà convaincus de votre méthode, avant même le premier appel.</p>
+        </div>
+        <div class="profile-card">
+          <div class="profile-label">Consultant</div>
+          <p>Un livre positionne votre expertise différemment que n'importe quel deck ou profil LinkedIn.</p>
+        </div>
+        <div class="profile-card">
+          <div class="profile-label">Thérapeute / Praticien</div>
+          <p>Transformez vos protocoles en ressource qui qualifie les bons patients et convertit automatiquement.</p>
+        </div>
+        <div class="profile-card">
+          <div class="profile-label">Formateur</div>
+          <p>Un livre gratuit en lead magnet multiplie la qualité et la quantité des inscriptions à vos programmes.</p>
+        </div>
+        <div class="profile-card">
+          <div class="profile-label">Conférencier</div>
+          <p>Le livre ouvre des portes de scènes que les simples bios d'auteur ne peuvent pas ouvrir.</p>
+        </div>
+        <div class="profile-card">
+          <div class="profile-label">Expert indépendant</div>
+          <p>Devenez la référence dans votre niche avec un livre qui travaille à votre place 24h/24.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRICING ── -->
+  <section id="commander">
+    <div class="wrap">
+      <div class="prompt">./checkout.sh</div>
+      <h2>Commandez le <span class="hi">Book Skills Bundle.</span></h2>
+
+      <div class="pricing-box">
+        <div class="pricing-head">
+          <div class="label">Paiement unique · Accès immédiat · Mises à jour incluses</div>
+          <div class="price-big"><span class="price-currency">€</span>15</div>
+          <div class="price-note"><s>Valeur totale : 535€</s> &nbsp;·&nbsp; Prix de lancement</div>
+        </div>
+
+        <ul class="value-stack">
+          <li>
+            <span class="v-name">✓ &nbsp;Pack 01 — Idéation & Structure <span class="v-sub">(8 skills)</span></span>
+            <span class="v-price">97€</span>
+          </li>
+          <li>
+            <span class="v-name">✓ &nbsp;Pack 02 — Rédaction du contenu <span class="v-sub">(8 skills)</span></span>
+            <span class="v-price">97€</span>
+          </li>
+          <li>
+            <span class="v-name">✓ &nbsp;Pack 03 — Funnel & Marketing <span class="v-sub">(10 skills)</span></span>
+            <span class="v-price">147€</span>
+          </li>
+          <li>
+            <span class="v-name">✓ &nbsp;Pack 04 — Promotion & Distribution <span class="v-sub">(8 skills)</span></span>
+            <span class="v-price">97€</span>
+          </li>
+          <li>
+            <span class="v-name">✓ &nbsp;Pack 05 — Conversion & Qualification <span class="v-sub">(6 skills)</span></span>
+            <span class="v-price">97€</span>
+          </li>
+        </ul>
+
+        <div class="value-total">
+          <span class="t-label">Valeur totale</span>
+          <span class="t-amount">535€</span>
+        </div>
+
+        <a href="#" class="pricing-cta">Obtenir les 40 skills maintenant — 15€ →</a>
+        <div class="pricing-sub">Garantie 30 jours &nbsp;·&nbsp; Paiement sécurisé &nbsp;·&nbsp; Accès immédiat après paiement</div>
+      </div>
+
+      <div class="guarantee-box">
+        <div class="g-icon">🛡️</div>
+        <div>
+          <h3>Garantie 30 jours — remboursement sans question</h3>
+          <p>Vous installez les skills, vous les testez, et s'ils ne correspondent pas à ce que vous attendez, envoyez un email dans les 30 jours. Remboursement immédiat, sans question posée, sans condition.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section>
+    <div class="wrap">
+      <div class="prompt">./faq.sh</div>
+      <h2>Questions <span class="hi">fréquentes.</span></h2>
+      <div class="faq-list">
+
+        <details>
+          <summary>C'est quoi exactement un "skill Claude" ?</summary>
+          <p>Un skill Claude est un fichier Markdown spécialement configuré que vous installez dans Claude. Quand vous l'activez, Claude adopte un rôle précis, suit un process défini, et produit un livrable structuré — comme un collaborateur spécialisé plutôt qu'un assistant généraliste. Différence majeure avec un simple prompt : le skill connaît le contexte, pose les bonnes questions, et guide chaque étape.</p>
+        </details>
+
+        <details>
+          <summary>Faut-il un abonnement Claude payant pour utiliser ces skills ?</summary>
+          <p>Oui — ces skills nécessitent un abonnement <strong>Claude Pro</strong> (20€/mois) ou <strong>Claude Max</strong> pour fonctionner correctement. Ils sont compatibles avec <strong>Claude Code</strong> et <strong>Claude Cowork</strong>. La version gratuite de Claude.ai ne supporte pas les sessions longues nécessaires à la rédaction d'un livre complet.</p>
+        </details>
+
+        <details>
+          <summary>En combien de temps peut-on écrire un livre avec ces skills ?</summary>
+          <p>Ça dépend de votre rythme et de votre disponibilité, mais l'objectif est réaliste : un premier manuscrit complet en 4 à 8 semaines en travaillant 1h par jour. Les skills éliminent les deux principaux blocages — la structure et le démarrage. Ce qui reste, c'est votre pensée, pas la technique.</p>
+        </details>
+
+        <details>
+          <summary>Est-ce que les skills remplacent ma voix d'auteur ?</summary>
+          <p>Non. Les skills vous guident dans le processus (structure, questions à se poser, éléments à inclure dans chaque section), mais les idées, la voix, et les expériences restent entièrement les vôtres. Claude est ici un partenaire d'écriture structurant, pas un ghost-writer qui écrit à votre place.</p>
+        </details>
+
+        <details>
+          <summary>Quelle différence avec un simple prompt ?</summary>
+          <p>Un prompt générique produit une réponse générique. Un skill est conçu pour un cas précis : il sait où vous en êtes, pose les bonnes questions, suit un process éprouvé, et produit un livrable actionnable. C'est la différence entre demander à un ami "aide-moi à écrire un livre" et engager un éditeur professionnel.</p>
+        </details>
+
+        <details>
+          <summary>Ces skills fonctionnent-ils si je n'ai pas encore d'idée de livre ?</summary>
+          <p>Oui — le premier skill "Book Positioning Finder" est précisément conçu pour identifier le sujet de livre qui s'aligne avec votre expertise, votre audience, et votre offre high ticket. Vous n'avez pas besoin d'arriver avec une idée claire. C'est le point de départ.</p>
+        </details>
+
+        <details>
+          <summary>J'ai déjà un manuscrit en cours. Ce pack peut quand même m'aider ?</summary>
+          <p>Absolument. Vous pouvez utiliser les skills de rédaction pour débloquer les chapitres qui stagnent, les skills de funnel pour construire la distribution autour de votre livre existant, et les skills de conversion pour créer la séquence email et le funnel qui génèrent des leads qualifiés.</p>
+        </details>
+
+        <details>
+          <summary>Comment je reçois les skills après paiement ?</summary>
+          <p>Immédiatement après paiement, vous recevez un email avec un lien de téléchargement. Vous obtenez un fichier ZIP organisé par catégorie, accompagné d'un guide d'installation rapide. L'installation dans Claude prend moins de 5 minutes.</p>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FINAL CTA ── -->
+  <section class="cta-section">
+    <div class="wrap">
+      <div class="prompt" style="display:inline-block;margin-bottom:28px;">./get-the-bundle.sh</div>
+      <h2>Arrêtez de procrastiner sur votre livre.<br><span class="hi">Commencez avec les bons outils.</span></h2>
+      <p>40 skills Claude · Accès immédiat · Garantie 30 jours · 15€ une seule fois</p>
+      <a href="#commander" class="btn">Obtenir le Book Skills Bundle — 15€ →</a>
+      <div class="cta-fine">Garantie 30 jours &nbsp;·&nbsp; Paiement sécurisé &nbsp;·&nbsp; Accès immédiat après paiement</div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="wrap">
+      <p>© 2026 Maxime Lemaire &nbsp;·&nbsp; <a href="#">Mentions légales</a> &nbsp;·&nbsp; <a href="#">Politique de confidentialité</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>

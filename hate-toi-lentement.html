@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hâte-toi lentement — Pourquoi tu sabotes dès que ça commence à marcher</title>
+  <meta name="description" content="Tu as le niveau. Tout le monde le sait. Mais quelque chose t'empêche d'exprimer ce que tu as vraiment dans le ventre. Ce livre va te montrer pourquoi." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C8973C;
+      --gold-light: #F5E6C8;
+      --dark: #111111;
+      --text: #1C1C1C;
+      --muted: #6B6B6B;
+      --border: #E5E3DF;
+      --bg: #FAF9F7;
+      --bg-alt: #F2EFE9;
+      --white: #FFFFFF;
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+    .container--wide { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250,249,247,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+    }
+    nav .container--wide {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 18px;
+      color: var(--dark);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .nav-cta {
+      background: var(--dark);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 18px;
+      border-radius: 100px;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.8; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--dark);
+      color: var(--white);
+      padding: 100px 0 90px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(200,151,60,0.4);
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 32px;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(34px, 5.5vw, 58px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      font-weight: 400;
+      margin-bottom: 24px;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-sub {
+      font-size: 18px;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 48px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-cta {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--dark);
+      font-weight: 600;
+      font-size: 15px;
+      padding: 16px 36px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(200,151,60,0.35);
+    }
+    .hero-price {
+      margin-top: 14px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.4);
+    }
+    .hero-price s { color: rgba(255,255,255,0.25); }
+
+    /* ── SECTIONS ── */
+    section { padding: 88px 0; }
+    section + section { border-top: 1px solid var(--border); }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    h2 {
+      font-family: var(--serif);
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      font-weight: 400;
+      margin-bottom: 24px;
+    }
+    h2 em { font-style: italic; color: var(--gold); }
+    h3 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+    p { color: var(--muted); margin-bottom: 20px; }
+    p:last-child { margin-bottom: 0; }
+    p strong { color: var(--text); font-weight: 600; }
+
+    /* ── FEARS ── */
+    .fears-grid {
+      display: grid;
+      gap: 14px;
+      margin-top: 40px;
+    }
+    .fear-item {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 22px;
+      font-size: 15px;
+      color: var(--text);
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .fear-item em { font-style: italic; color: var(--muted); }
+
+    /* ── DIAGNOSTIC ── */
+    .diagnostic-block {
+      background: var(--dark);
+      color: var(--white);
+      border-radius: 20px;
+      padding: 52px 48px;
+      margin-top: 40px;
+    }
+    .diagnostic-block h3 {
+      font-family: var(--serif);
+      font-size: 26px;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+    .diagnostic-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .diagnostic-list li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      color: rgba(255,255,255,0.75);
+      font-size: 15px;
+      line-height: 1.6;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .diagnostic-list li:last-child { border-bottom: none; padding-bottom: 0; }
+
+    /* ── QUOTE ── */
+    .quote-block {
+      border-left: 3px solid var(--gold);
+      padding: 20px 28px;
+      margin: 40px 0;
+      background: var(--gold-light);
+      border-radius: 0 12px 12px 0;
+    }
+    .quote-block p {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.5;
+      margin: 0;
+    }
+    .quote-block--large p {
+      font-size: 24px;
+    }
+
+    /* ── STORY ── */
+    .story-block {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 48px;
+      margin-top: 40px;
+    }
+    .story-block p { font-size: 16px; line-height: 1.8; }
+    .story-block p + p { margin-top: 20px; }
+    .story-highlight {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-style: italic;
+      color: var(--text);
+      border-left: 3px solid var(--gold);
+      padding-left: 20px;
+      margin: 28px 0;
+    }
+
+    /* ── BELIEFS LIST ── */
+    .beliefs-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 28px 0;
+    }
+    .beliefs-list li {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 20px;
+      font-size: 15px;
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    /* ── WHAT YOU LEARN ── */
+    .learn-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 36px;
+    }
+    .learn-list li {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .learn-arrow {
+      flex-shrink: 0;
+      color: var(--gold);
+      font-size: 16px;
+      margin-top: 2px;
+    }
+
+    /* ── FOR WHO ── */
+    .for-who-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 40px;
+    }
+    @media (max-width: 600px) { .for-who-grid { grid-template-columns: 1fr; } }
+    .for-who-card {
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .for-who-card--yes {
+      background: var(--dark);
+      color: var(--white);
+    }
+    .for-who-card--no {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+    }
+    .for-who-card h3 {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .for-who-card--yes h3 { color: var(--gold); }
+    .for-who-card--no h3 { color: var(--muted); }
+    .for-who-items {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .for-who-items li {
+      font-size: 14px;
+      line-height: 1.55;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .for-who-card--yes .for-who-items li { color: rgba(255,255,255,0.8); }
+    .for-who-card--no .for-who-items li { color: var(--muted); }
+    .for-who-items .mark { flex-shrink: 0; margin-top: 1px; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 40px;
+    }
+    @media (max-width: 640px) { .testimonials-grid { grid-template-columns: 1fr; } }
+    .testimonial {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .testimonial-text {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--text);
+      font-style: italic;
+      margin-bottom: 20px !important;
+    }
+    .testimonial-author {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      margin: 0 !important;
+    }
+    .stars {
+      color: var(--gold);
+      font-size: 13px;
+      margin-bottom: 14px;
+      letter-spacing: 2px;
+    }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      background: var(--dark);
+      padding: 100px 0;
+      text-align: center;
+    }
+    .cta-section h2 {
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .cta-section .cta-sub {
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 40px;
+      font-size: 16px;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--dark);
+      font-weight: 600;
+      font-size: 16px;
+      padding: 18px 44px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(200,151,60,0.4);
+    }
+    .cta-note {
+      margin-top: 28px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+    }
+    .cta-ps {
+      margin-top: 56px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      text-align: left;
+    }
+    .cta-ps p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .cta-ps p:last-child { margin-bottom: 0; }
+
+    /* ── URGENCY ── */
+    .urgency-text {
+      font-family: var(--serif);
+      font-size: 20px;
+      line-height: 1.5;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 36px 0;
+      text-align: center;
+    }
+    footer p {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 0;
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    /* ── UTILITIES ── */
+    .text-center { text-align: center; }
+    .mt-8 { margin-top: 8px; }
+    .mt-16 { margin-top: 16px; }
+    .mt-24 { margin-top: 24px; }
+    .mt-40 { margin-top: 40px; }
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+      margin: 28px 0;
+    }
+
+    @media (max-width: 520px) {
+      .diagnostic-block { padding: 32px 24px; }
+      .story-block { padding: 32px 24px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container--wide">
+      <a href="#" class="nav-logo">Hâte-toi lentement</a>
+      <a href="#commander" class="nav-cta">Commander — 9€ →</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">Lancement · Prix réduit</div>
+      <h1>Tu as tout ce qu'il faut pour réussir. Alors pourquoi tu <em>sabotes</em> dès que ça commence à marcher ?</h1>
+      <p class="hero-sub">Obtiens <em style="color:var(--gold)">Hâte-toi lentement</em> — 9€ au lieu de 29€</p>
+      <a href="#commander" class="hero-cta">Commander maintenant — 9€</a>
+      <p class="hero-price"><s>29€</s> · Prix de lancement</p>
+    </div>
+  </section>
+
+  <!-- TU TE RECONNAIS -->
+  <section>
+    <div class="container">
+      <div class="section-label">Ça te parle ?</div>
+      <h2>Tu te reconnais <em>là-dedans.</em></h2>
+      <div class="fears-grid">
+        <div class="fear-item"><em>Tu lis beaucoup. Tu te formes en continu. Tu as un niveau de compétence que la plupart de tes concurrents n'ont pas. Et pourtant tu regardes des gens sortir des banalités affligeantes — et cartonner.</em></div>
+        <div class="fear-item"><em>Tu travailles autant que des gens qui gagnent dix fois plus que toi. Et quelqu'un quelque part t'a déjà dit : "Mais pourquoi tu ne gagnes pas plus ? Tu as clairement le niveau."</em></div>
+        <div class="fear-item"><em>Tu te retrouves à la réunion, ou dans ta voiture, ou sous la douche, à te demander : "Mais bordel, pourquoi je ne réussis pas plus ?"</em></div>
+        <div class="fear-item"><em>Ça mouline. Ça se disperse. Ça reste en suspens. Ce n'est pas un manque de talent. Ce n'est pas un manque de travail. C'est quelque chose de plus profond — et de plus inconfortable à regarder.</em></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LE PROBLÈME -->
+  <section>
+    <div class="container">
+      <div class="section-label">Le diagnostic</div>
+      <h2>Le problème n'est pas là <em>où tu crois.</em></h2>
+      <p>Tu as deux forces qui tirent dans des directions opposées.</p>
+      <p>D'un côté : <strong>tu es câblé pour réussir.</strong> Ton inconscient cherche naturellement de la valeur, de la reconnaissance, à laisser une trace. Tu veux être vu. Tu veux compter. Tu veux que ce que tu fais ait du poids. Et honnêtement ? C'est totalement légitime.</p>
+      <p>De l'autre : <strong>un couvercle invisible t'empêche d'exprimer cette énergie librement.</strong></p>
+      <p>Ce couvercle, tu l'as hérité. De ta famille. De ta culture. De ton environnement. Il ressemble à ça :</p>
+
+      <ul class="beliefs-list">
+        <li>"Pète pas plus haut que ton cul."</li>
+        <li>"Les riches, c'est pas des gens bien."</li>
+        <li>"Le fric, ça change les gens."</li>
+        <li>"Faut pas trop se mettre en avant."</li>
+      </ul>
+
+      <p>Personne ne te l'a dit explicitement. Mais tu l'as absorbé. Et aujourd'hui, il tourne en boucle quelque part dans ton système nerveux.</p>
+
+      <div class="diagnostic-block">
+        <h3>Ce qui se passe vraiment</h3>
+        <ul class="diagnostic-list">
+          <li>
+            <span>Tu veux réussir — vraiment, profondément — mais une partie de toi refuse d'être <strong style="color:white">"l'un de ces gens-là"</strong>.</span>
+          </li>
+          <li>
+            <span>Alors tu agis. Tu démarres. Et dès que ça commence à marcher… tu sabotes. Tu disperses. Tu réfléchis au lieu d'agir. Tu te mets à douter.</span>
+          </li>
+          <li>
+            <span><strong style="color:white">Ce n'est pas de la paresse. C'est une guerre intérieure.</strong></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- LA LOI DE MOÏSE -->
+  <section>
+    <div class="container">
+      <div class="section-label">La loi cachée</div>
+      <h2>La loi que personne <em>ne te dit.</em></h2>
+      <p>Il y a une loi implicite qui tourne dans ta tête depuis l'enfance.</p>
+      <p>Elle ne s'appelle pas comme ça. Elle n'a pas de nom. Mais elle dit, clairement :</p>
+
+      <div class="quote-block quote-block--large">
+        <p>Réussis. Mais pas trop.</p>
+      </div>
+
+      <p>C'est la loi de Moïse. Tu peux apercevoir la terre promise. Mais y entrer — vraiment — c'est une autre histoire.</p>
+      <p>Tant que tu n'as pas revisité cette loi <strong>dans ton corps</strong>, pas juste dans ta tête, tu rejoueras la même scène en boucle. Business après business. Projet après projet. Dès que tu approches du plafond, quelque chose te ramène en arrière.</p>
+    </div>
+  </section>
+
+  <!-- POURQUOI TU TE FREINES -->
+  <section>
+    <div class="container">
+      <div class="section-label">Le mécanisme</div>
+      <h2>Pourquoi tu te freines — et ce n'est pas <em>ce que tu crois.</em></h2>
+
+      <div class="story-block">
+        <p>Tu es probablement quelqu'un d'intellectuellement fort. Tu analyses bien. Tu comprends vite. Tu arrives au webinaire avec dix questions que les autres n'auraient jamais pensé à poser.</p>
+        <div class="story-highlight">Mais cette force est aussi ta protection.</div>
+        <p>Tant que tu réfléchis, tu n'as pas à agir. Tant que tu te formes, tu n'as pas à te confronter. Tant que tu restes dans le monde de l'information, tu es en sécurité.</p>
+        <p><em>"Oui mais le webinaire, il faut d'abord que je réfléchisse à la structure."</em></p>
+        <p>Tu connais cette phrase. Tu l'as peut-être déjà prononcée.</p>
+        <p>C'est ça, le mécanisme de protection. S'immerger dans l'intellectuel pour ne pas avoir à faire péter les verrous. Pour ne pas avoir à regarder ce qui retient vraiment.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LA LOYAUTÉ -->
+  <section>
+    <div class="container">
+      <div class="section-label">La vraie raison</div>
+      <h2>Ce qui retient vraiment : <em>la loyauté.</em></h2>
+      <p>Voilà ce que personne ne te dit.</p>
+      <p>Tu ne te freines pas par manque de confiance. Tu te freines <strong>par loyauté.</strong></p>
+      <p>Loyauté envers tes parents. Envers ton milieu. Envers les gens qui t'ont vu grandir et qui, inconsciemment, attendent de toi que tu restes à ta place.</p>
+      <p>Réussir vraiment — dépasser ce qu'eux ont accompli, assumer pleinement ton énergie, gagner de l'argent sans honte, t'exposer sans t'excuser — ça revient à <strong>les trahir.</strong></p>
+      <p>Et cette trahison-là, ton système nerveux n'est pas prêt à la vivre. Pas encore.</p>
+      <p>Alors tu restes dépendant. Pas d'eux directement. Mais de leur regard. De leur approbation. De l'idée qu'ils se font de toi.</p>
+
+      <div class="quote-block quote-block--large">
+        <p>Tant que tu cherches l'approbation de tes parents — même inconsciemment — tu ne peux pas te permettre de les dépasser.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LA PROJECTION -->
+  <section>
+    <div class="container">
+      <div class="section-label">L'autre côté</div>
+      <h2>À quoi ressemble <em>l'autre côté.</em></h2>
+
+      <div class="story-block">
+        <p>Imagine.</p>
+        <p>Tu es face caméra. Tu parles de ce qui te touche vraiment — sans filtre, sans calcul. Tu n'essaies pas de "bien faire". Tu existes, tout simplement.</p>
+        <p>Dans les commentaires, des gens écrivent : <em>"Merci pour ton authenticité."</em> Des gens te demandent ce que tu proposes.</p>
+        <div class="story-highlight">Tu es conscient que ça ne plaira pas à tout le monde. Et tu t'en fous — vraiment. Pas parce que tu n'as plus peur. Parce que quelque chose de plus important que la peur guide l'action : être toi.</div>
+        <p>Le lecteur n'est plus papa ou maman. C'est juste un lecteur. Et tu peux lui parler librement, depuis un endroit qui n'a pas besoin d'être validé.</p>
+        <p><strong>C'est ça, passer du Social Mind au Self-Authorized Mind.</strong></p>
+        <p>Pas une transformation de personnalité. Une libération de ce qui était déjà là — et que tu t'interdisais d'exprimer.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CE QUE CE LIVRE VA FAIRE -->
+  <section>
+    <div class="container">
+      <div class="section-label">Le livre</div>
+      <h2>Ce que <em>Hâte-toi lentement</em> va faire pour toi.</h2>
+      <p>Ce n'est pas un livre qui va t'apprendre quelque chose. C'est un livre qui va te <strong>percuter.</strong></p>
+      <p>Il ne va pas te dire de "lâcher prise" ou de "travailler moins". Ces conseils sont à côté de la plaque — parce qu'ils ignorent la vraie question.</p>
+      <p>La vraie question n'est pas : <em>"Comment je fais moins ?"</em><br>C'est : <em>"Qu'est-ce qui m'empêche d'exprimer pleinement ce que j'ai dans le ventre ?"</em></p>
+
+      <ul class="learn-list">
+        <li><span class="learn-arrow">→</span><span><strong>Enfin nommer le câblage</strong> — comprendre que tu es naturellement orienté vers la réussite, et que ce n'est pas un problème. C'est ta nature. Mais il faut l'assumer, pas le combattre.</span></li>
+        <li><span class="learn-arrow">→</span><span><strong>Identifier les verrous hérités</strong> — les lois implicites familiales et sociétales qui te font saboter dès que tu approches du plafond. Les voir. Les nommer. Comprendre d'où elles viennent.</span></li>
+        <li><span class="learn-arrow">→</span><span><strong>Toucher la loyauté</strong> — ce lien souterrain qui te maintient dépendant du regard de ceux qui t'ont précédé. Et apprendre à le couper — vraiment, corporellement, pas juste intellectuellement.</span></li>
+        <li><span class="learn-arrow">→</span><span><strong>Passer du Social Mind au Self-Authorized Mind</strong> — ne plus attendre que quelqu'un te donne la permission d'exister pleinement. Devenir ta propre source de référence.</span></li>
+        <li><span class="learn-arrow">→</span><span><strong>Libérer l'énergie</strong> — pas en travaillant plus. En retirant ce qui la bloque.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- POUR QUI -->
+  <section>
+    <div class="container">
+      <div class="section-label">Pour qui</div>
+      <h2>Ce livre est <em>pour toi</em> si…</h2>
+      <div class="for-who-grid">
+        <div class="for-who-card for-who-card--yes">
+          <h3>✓ &nbsp;Pour toi</h3>
+          <ul class="for-who-items">
+            <li><span class="mark">·</span><span>Tu te reconnais dans tout ce qui est écrit ici. Tu as le niveau. Tu le sais. Ton entourage le sait.</span></li>
+            <li><span class="mark">·</span><span>Il y a quelque chose — invisible, tenace — qui fait que ça ne sort pas comme ça devrait.</span></li>
+            <li><span class="mark">·</span><span>Tu es prêt à regarder ça en face. Pas juste à en parler.</span></li>
+            <li><span class="mark">·</span><span>Tu sens que tu as quelque chose dans le ventre que tu n'arrives pas à exprimer librement.</span></li>
+          </ul>
+        </div>
+        <div class="for-who-card for-who-card--no">
+          <h3>✕ &nbsp;Pas pour toi</h3>
+          <ul class="for-who-items">
+            <li><span class="mark">·</span><span>Tu cherches une méthode de productivité, une recette pour déléguer, ou un système pour "travailler moins".</span></li>
+            <li><span class="mark">·</span><span>Tu as encore besoin du personnage du performeur pour exister.</span></li>
+            <li><span class="mark">·</span><span>Tu préfères une réponse confortable à une vérité inconfortable.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TÉMOIGNAGES -->
+  <section>
+    <div class="container">
+      <div class="section-label">Témoignages</div>
+      <h2>Ce que les premiers lecteurs <em>en disent.</em></h2>
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"[Témoignage à ajouter]"</p>
+          <p class="testimonial-author">— Prénom Nom</p>
+        </div>
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"[Témoignage à ajouter]"</p>
+          <p class="testimonial-author">— Prénom Nom</p>
+        </div>
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"[Témoignage à ajouter]"</p>
+          <p class="testimonial-author">— Prénom Nom</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LA QUESTION -->
+  <section>
+    <div class="container">
+      <div class="section-label">La question</div>
+      <h2>Combien de temps encore <em>avant de revisiter cette loi ?</em></h2>
+      <p class="urgency-text"><em>"Réussis. Mais pas trop."</em></p>
+      <p>Elle t'a coûté combien d'années ? Combien de projets dispersés ? Combien de plafonds heurtés ?</p>
+      <p>Tu n'as pas besoin de travailler plus. Tu n'as pas besoin d'une nouvelle méthode. Tu as besoin de <strong>faire péter la loyauté</strong> — et de t'autoriser enfin à exprimer ce que tu as vraiment dans le ventre.</p>
+
+      <div class="quote-block mt-40">
+        <p>Ce livre ne va pas te transformer en une semaine. Mais il va te montrer quelque chose que personne ne t'a jamais montré clairement : la loi qui te retient depuis des années. Et comment la couper.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="commander">
+    <div class="container">
+      <div class="section-label" style="color:var(--gold); margin-bottom:16px;">Hâte-toi lentement · Lancement</div>
+      <h2>Commande <em>maintenant.</em></h2>
+      <p class="cta-sub">9€ au lieu de 29€ — Prix de lancement. Passe à 29€ dans quelques jours.<br>Livraison immédiate par email (PDF, ePub, Mobi)</p>
+      <a href="#" class="cta-btn">Commander Hâte-toi lentement — 9€ →</a>
+      <p class="cta-note">À très bientôt, <strong style="color:rgba(255,255,255,0.6)">Fabien</strong></p>
+
+      <div class="cta-ps container">
+        <p><em>P.S. — Ce livre ne va pas te transformer en une semaine. Mais il va te montrer quelque chose que personne ne t'a jamais montré clairement : la loi qui te retient depuis des années. Et comment la couper.</em></p>
+        <p><em>P.P.S. — Tu te demandes si c'est pour toi ? Pose-toi juste cette question : "Est-ce que je sens que j'ai quelque chose dans le ventre que je n'arrive pas à exprimer librement ?" Si oui — c'est exactement pour toi.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>© 2026 Fabien Delcourt · <a href="#">Mentions légales</a> · <a href="#">Politique de confidentialité</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>

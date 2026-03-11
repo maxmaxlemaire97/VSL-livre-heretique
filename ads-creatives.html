@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ads Creatives — Incopiable</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Barlow+Condensed:wght@300;400;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --noir: #0a0a0a;
+    --encre: #111111;
+    --ivoire: #f5f0e8;
+    --creme: #ede8dc;
+    --or: #c9a84c;
+    --or-pale: #e8d5a0;
+    --rouge: #c0392b;
+    --gris: #888880;
+    --gris-clair: #cccccc;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; background: #111; font-family: 'Libre Baskerville', Georgia, serif; }
+
+  /* ── LAYOUT ── */
+  .viewer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    gap: 16px;
+  }
+
+  .slide-wrapper {
+    width: 600px;
+    height: 600px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  }
+
+  .nav-bar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: #888;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+
+  .nav-btn {
+    background: none;
+    border: 1px solid #444;
+    color: #fff;
+    padding: 8px 20px;
+    cursor: pointer;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    transition: all 0.2s;
+  }
+  .nav-btn:hover { border-color: var(--or); color: var(--or); }
+
+  .counter { color: var(--or); font-size: 15px; min-width: 80px; text-align: center; }
+
+  .slide-label {
+    color: #555;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  /* ── SLIDES ── */
+  .slide {
+    display: none;
+    width: 600px;
+    height: 600px;
+    position: absolute;
+    inset: 0;
+  }
+  .slide.active { display: flex; }
+
+  /* ─────────────────────────────────
+     AD 1 — Le contenu frivole
+  ───────────────────────────────── */
+  #ad1 {
+    background: var(--noir);
+    flex-direction: row;
+    align-items: stretch;
+  }
+  .ad1-left {
+    flex: 1;
+    background: #0f1623;
+    display: flex;
+    flex-direction: column;
+    padding: 32px 24px;
+    border-right: 1px solid #1e2d4a;
+    gap: 12px;
+  }
+  .ad1-platform {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #4a7aff;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .ad1-avatar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .ad1-avatar-circle {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4a7aff, #2244bb);
+  }
+  .ad1-name { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; color: #ddd; font-weight: 700; }
+  .ad1-role { font-size: 10px; color: #666; font-family: 'Barlow Condensed', sans-serif; }
+  .ad1-post-text {
+    font-size: 11px;
+    color: #bbb;
+    line-height: 1.5;
+    flex: 1;
+  }
+  .ad1-reactions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: #888;
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+  .ad1-likes { color: #4a7aff; font-weight: 700; }
+  .ad1-comments {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 8px;
+  }
+  .ad1-comment {
+    font-size: 10px;
+    color: #666;
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+  .ad1-divider {
+    width: 2px;
+    background: var(--rouge);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ad1-divider-label {
+    position: absolute;
+    background: var(--rouge);
+    padding: 8px 4px;
+    writing-mode: vertical-rl;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: #fff;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .ad1-right {
+    flex: 1;
+    background: #050505;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 24px;
+    gap: 16px;
+  }
+  .ad1-book {
+    width: 100px;
+    height: 140px;
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+    border-left: 8px solid var(--or);
+    box-shadow: 6px 6px 20px rgba(0,0,0,0.8), inset -2px 0 8px rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+  }
+  .ad1-book-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 10px;
+    color: var(--or);
+    text-align: center;
+    font-style: italic;
+    line-height: 1.4;
+  }
+  .ad1-book-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 8px;
+    color: var(--gris);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 4px;
+  }
+  .ad1-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--or);
+    text-transform: uppercase;
+    border: 1px solid var(--or);
+    padding: 4px 10px;
+  }
+  .ad1-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--rouge);
+    padding: 14px 24px;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    color: #fff;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  /* ─────────────────────────────────
+     AD 3 — Le saviez-vous
+  ───────────────────────────────── */
+  #ad3 {
+    background: #05080f;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    gap: 28px;
+    text-align: center;
+  }
+  .ad3-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--or);
+    text-transform: uppercase;
+  }
+  .ad3-stat {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 900;
+    color: var(--or);
+    line-height: 1;
+  }
+  .ad3-stat-label {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 16px;
+    color: var(--ivoire);
+    line-height: 1.5;
+    max-width: 380px;
+  }
+  .ad3-source {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    color: #444;
+    letter-spacing: 1px;
+  }
+  .ad3-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--or);
+    opacity: 0.4;
+  }
+  .ad3-question {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: #fff;
+    font-style: italic;
+    line-height: 1.5;
+    max-width: 380px;
+  }
+  .ad3-question em { color: var(--rouge); font-style: normal; }
+
+  /* ─────────────────────────────────
+     AD 4 — Les touristes en call
+  ───────────────────────────────── */
+  #ad4 {
+    background: #0c0c0c;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    gap: 20px;
+  }
+  .ad4-header {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gris);
+    text-transform: uppercase;
+  }
+  .ad4-calendar {
+    width: 100%;
+    max-width: 400px;
+    background: #141414;
+    border: 1px solid #222;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .ad4-cal-header {
+    background: #1a1a1a;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #222;
+  }
+  .ad4-cal-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    color: #fff;
+    letter-spacing: 1px;
+    font-weight: 700;
+  }
+  .ad4-cal-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #e74c3c;
+    box-shadow: 0 0 6px rgba(231,76,60,0.6);
+  }
+  .ad4-slot {
+    display: flex;
+    align-items: center;
+    padding: 11px 16px;
+    border-bottom: 1px solid #1a1a1a;
+    gap: 12px;
+    position: relative;
+  }
+  .ad4-time {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    color: #555;
+    width: 50px;
+    flex-shrink: 0;
+  }
+  .ad4-slot-info {
+    flex: 1;
+  }
+  .ad4-slot-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    color: #999;
+    font-weight: 600;
+  }
+  .ad4-slot-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    color: #444;
+    letter-spacing: 1px;
+  }
+  .ad4-x {
+    color: var(--rouge);
+    font-size: 18px;
+    font-weight: 900;
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+  .ad4-cross-line {
+    position: absolute;
+    left: 16px; right: 16px;
+    top: 50%;
+    height: 1px;
+    background: rgba(192,57,43,0.3);
+  }
+  .ad4-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--rouge);
+    font-weight: 900;
+    text-align: center;
+  }
+  .ad4-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    color: var(--gris);
+    letter-spacing: 2px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  /* ─────────────────────────────────
+     AD 5 — La barrière à l'entrée
+  ───────────────────────────────── */
+  #ad5 {
+    background: var(--noir);
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 32px;
+    gap: 0;
+  }
+  .ad5-top {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    color: var(--ivoire);
+    text-align: center;
+    line-height: 1.4;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #222;
+    width: 100%;
+  }
+  .ad5-top em { color: var(--rouge); font-style: normal; }
+  .ad5-cols {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    gap: 2px;
+    padding: 20px 0;
+  }
+  .ad5-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    gap: 16px;
+    text-align: center;
+  }
+  .ad5-col-left { background: #0d0d0d; border: 1px solid #1a1a1a; }
+  .ad5-col-right { background: #0a0806; border: 1px solid #2a2210; }
+  .ad5-col-icons {
+    display: flex;
+    gap: 8px;
+    font-size: 22px;
+  }
+  .ad5-col-barrier {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gris);
+  }
+  .ad5-col-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .ad5-col-left .ad5-col-value { color: var(--rouge); }
+  .ad5-col-right .ad5-col-value { color: var(--or); }
+  .ad5-col-desc {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    color: #555;
+    line-height: 1.4;
+    letter-spacing: 0.5px;
+  }
+  .ad5-book-mini {
+    width: 50px; height: 70px;
+    background: linear-gradient(135deg, #1a1508, #2a2010);
+    border-left: 5px solid var(--or);
+    box-shadow: 3px 3px 12px rgba(0,0,0,0.8);
+  }
+  .ad5-vs {
+    width: 2px;
+    background: #1a1a1a;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ad5-vs-label {
+    position: absolute;
+    background: #222;
+    color: #555;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    padding: 4px 6px;
+    letter-spacing: 1px;
+  }
+  .ad5-bottom {
+    width: 100%;
+    padding-top: 16px;
+    border-top: 1px solid #222;
+    text-align: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--or);
+    text-transform: uppercase;
+  }
+
+  /* ─────────────────────────────────
+     AD 6 — Le complexe du Gourou
+  ───────────────────────────────── */
+  #ad6 {
+    background: #050505;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    gap: 36px;
+    text-align: center;
+  }
+  .ad6-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #555;
+    text-transform: uppercase;
+    font-style: italic;
+  }
+  .ad6-badges {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+  .ad6-badge {
+    padding: 20px 28px;
+    border: 2px solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    min-width: 140px;
+  }
+  .ad6-badge-left {
+    border-color: #333;
+    background: #0a0a0a;
+    transform: rotate(-2deg);
+  }
+  .ad6-badge-right {
+    border-color: var(--or);
+    background: #0c0a04;
+    transform: rotate(1deg);
+  }
+  .ad6-badge-icon { font-size: 28px; }
+  .ad6-badge-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: 16px;
+  }
+  .ad6-badge-left .ad6-badge-title { color: #444; font-family: Arial, sans-serif; font-weight: 400; }
+  .ad6-badge-right .ad6-badge-title { color: var(--or); font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: 4px; }
+  .ad6-badge-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .ad6-badge-left .ad6-badge-sub { color: #333; }
+  .ad6-badge-right .ad6-badge-sub { color: rgba(201,168,76,0.5); }
+  .ad6-divider-v {
+    width: 1px;
+    height: 80px;
+    background: #222;
+  }
+  .ad6-question {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 15px;
+    color: var(--ivoire);
+    line-height: 1.6;
+    max-width: 380px;
+    font-style: italic;
+  }
+  .ad6-cta {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--or);
+    text-transform: uppercase;
+    border-top: 1px solid #1a1a1a;
+    padding-top: 16px;
+    width: 100%;
+  }
+
+  /* ─────────────────────────────────
+     AD 7 — Le problème de thèse
+  ───────────────────────────────── */
+  #ad7 {
+    background: var(--ivoire);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 48px;
+    gap: 0;
+    text-align: center;
+  }
+  .ad7-line1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .ad7-dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--or);
+    margin: 20px auto;
+  }
+  .ad7-line2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: var(--or);
+    font-style: italic;
+    line-height: 1.3;
+  }
+  .ad7-line3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    color: #999;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 32px;
+  }
+  .ad7-logo {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: #bbb;
+    text-transform: uppercase;
+  }
+
+  /* ─────────────────────────────────
+     AD 8 — Le plafond de verre
+  ───────────────────────────────── */
+  #ad8 {
+    background: #030303;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 60px 56px;
+    gap: 0;
+  }
+  .ad8-lines { display: flex; flex-direction: column; gap: 12px; margin-bottom: 48px; }
+  .ad8-line {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: #333;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .ad8-line::before {
+    content: '';
+    display: inline-block;
+    width: 20px; height: 1px;
+    background: #333;
+    flex-shrink: 0;
+  }
+  .ad8-line.highlight { color: var(--or); }
+  .ad8-line.highlight::before { background: var(--or); }
+  .ad8-divider { width: 40px; height: 2px; background: var(--or); margin-bottom: 32px; }
+  .ad8-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--ivoire);
+    line-height: 1.25;
+    margin-bottom: 16px;
+  }
+  .ad8-headline em { color: var(--or); font-style: italic; }
+  .ad8-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #444;
+    text-transform: uppercase;
+  }
+  .ad8-cursor {
+    display: inline-block;
+    width: 3px; height: 28px;
+    background: var(--or);
+    margin-left: 4px;
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+  /* ─────────────────────────────────
+     AD 9 — Le paradoxe de la longueur
+  ───────────────────────────────── */
+  #ad9 {
+    background: var(--noir);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 48px;
+    gap: 28px;
+    text-align: center;
+  }
+  .ad9-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--ivoire);
+    font-style: italic;
+    line-height: 1.4;
+  }
+  .ad9-headline strong { color: var(--or); font-style: normal; }
+  .ad9-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .ad9-table th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    border-bottom: 2px solid #222;
+    color: #555;
+  }
+  .ad9-table th:nth-child(3) { color: var(--or); border-bottom-color: var(--or); }
+  .ad9-table td {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    padding: 14px 16px;
+    border-bottom: 1px solid #151515;
+    color: #888;
+    letter-spacing: 0.5px;
+  }
+  .ad9-table tr:last-child td { border-bottom: none; font-weight: 700; }
+  .ad9-table td:nth-child(1) { text-align: left; }
+  .ad9-table td:nth-child(3) { color: var(--or); }
+  .ad9-table tr:last-child td:nth-child(3) { color: var(--or); font-size: 16px; }
+  .ad9-table tr.row-highlight td { background: rgba(201,168,76,0.04); }
+  .ad9-tagline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--or);
+    text-transform: uppercase;
+    border-top: 1px solid #1a1a1a;
+    padding-top: 16px;
+    width: 100%;
+  }
+
+  /* ─────────────────────────────────
+     AD 10 — Repartir de zéro
+  ───────────────────────────────── */
+  #ad10 {
+    background: #060606;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    gap: 24px;
+    text-align: center;
+  }
+  .ad10-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: #444;
+    text-transform: uppercase;
+  }
+  .ad10-loop {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    max-width: 380px;
+  }
+  .ad10-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    border-left: 2px solid #1a1a1a;
+    margin-left: 20px;
+  }
+  .ad10-step-num {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: #111;
+    border: 1px solid #2a2a2a;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    color: #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-left: -33px;
+  }
+  .ad10-step-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    color: #666;
+    letter-spacing: 0.5px;
+  }
+  .ad10-arrow {
+    font-size: 12px;
+    color: #2a2a2a;
+    margin-left: 20px;
+    padding: 2px 0;
+  }
+  .ad10-repeat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px 10px 4px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    color: var(--rouge);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .ad10-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--ivoire);
+    line-height: 1.3;
+  }
+  .ad10-headline em { color: var(--rouge); font-style: italic; }
+  .ad10-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #333;
+    text-transform: uppercase;
+  }
+
+  /* ─────────────────────────────────
+     AD 11 — Le tunnel autoliquidateur
+  ───────────────────────────────── */
+  #ad11 {
+    background: #030303;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    gap: 24px;
+    text-align: center;
+  }
+  .ad11-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: #444;
+    text-transform: uppercase;
+  }
+  .ad11-funnel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .ad11-box {
+    background: #0f0f0f;
+    border: 1px solid #222;
+    padding: 10px 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    color: #aaa;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+  .ad11-box span { display: block; font-size: 18px; color: var(--or); font-weight: 700; }
+  .ad11-arrow-right {
+    color: var(--or);
+    font-size: 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+  .ad11-math {
+    width: 100%;
+    max-width: 380px;
+    border-top: 1px solid #1a1a1a;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .ad11-math-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    color: #555;
+    letter-spacing: 0.5px;
+  }
+  .ad11-math-row.total {
+    border-top: 1px solid #222;
+    padding-top: 10px;
+    margin-top: 4px;
+    font-size: 16px;
+    color: var(--ivoire);
+    font-weight: 700;
+  }
+  .ad11-math-row .val { color: var(--or); font-weight: 700; }
+  .ad11-math-row.total .val { color: #4caf50; font-size: 18px; }
+  .ad11-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    color: var(--or);
+    font-style: italic;
+    line-height: 1.4;
+    border-top: 1px solid #1a1a1a;
+    padding-top: 16px;
+    width: 100%;
+  }
+</style>
+</head>
+<body>
+<div class="viewer">
+
+  <!-- NAVIGATION -->
+  <div class="nav-bar">
+    <button class="nav-btn" onclick="prev()">←</button>
+    <div class="counter" id="counter">1 / 11</div>
+    <button class="nav-btn" onclick="next()">→</button>
+  </div>
+  <div class="slide-label" id="slide-label">AD 1 — Le contenu frivole</div>
+
+  <div class="slide-wrapper">
+
+    <!-- AD 1 — Le contenu frivole -->
+    <div class="slide active" id="ad1">
+      <div class="ad1-left">
+        <div class="ad1-platform">LinkedIn · Il y a 2h</div>
+        <div class="ad1-avatar">
+          <div class="ad1-avatar-circle"></div>
+          <div>
+            <div class="ad1-name">Marc Dubois</div>
+            <div class="ad1-role">Consultant · Stratégie & Growth</div>
+          </div>
+        </div>
+        <div class="ad1-post-text">
+          "5 leçons que j'ai apprises après 8 ans de conseil en stratégie 🔑<br><br>
+          La plupart des gens font ça à l'envers. Voici pourquoi..."
+        </div>
+        <div class="ad1-comments">
+          <div class="ad1-comment">🔥 "Gold comme toujours !"</div>
+          <div class="ad1-comment">💯 "Incroyable, merci !"</div>
+          <div class="ad1-comment">🙌 "Super contenu !"</div>
+        </div>
+        <div class="ad1-reactions">
+          <span class="ad1-likes">847 réactions</span>
+          <span>· 124 commentaires</span>
+        </div>
+      </div>
+      <div class="ad1-divider">
+        <div class="ad1-divider-label">VS</div>
+      </div>
+      <div class="ad1-right">
+        <div class="ad1-book">
+          <div>
+            <div class="ad1-book-title">Le Livre<br>Hérétique</div>
+            <div class="ad1-book-sub">Marc Dubois</div>
+          </div>
+        </div>
+        <div class="ad1-tag">Actif permanent</div>
+      </div>
+      <div class="ad1-bottom">L'un disparaît dans 24h. L'autre est encore lu dans 10 ans.</div>
+    </div>
+
+    <!-- AD 3 — Le saviez-vous -->
+    <div class="slide" id="ad3">
+      <div class="ad3-eyebrow">Le saviez-vous ?</div>
+      <div class="ad3-stat">2×</div>
+      <div class="ad3-stat-label">Les lecteurs de livres gagnent en moyenne<br><strong>deux fois plus</strong> que les non-lecteurs</div>
+      <div class="ad3-source">Source : Bureau of Labor Statistics · American Time Use Survey</div>
+      <div class="ad3-divider"></div>
+      <div class="ad3-question">
+        Alors pourquoi tu essaies de les atteindre<br>avec des <em>Reels ?</em>
+      </div>
+    </div>
+
+    <!-- AD 4 — Les touristes en call -->
+    <div class="slide" id="ad4">
+      <div class="ad4-header">Votre semaine · Appels découverte</div>
+      <div class="ad4-calendar">
+        <div class="ad4-cal-header">
+          <div class="ad4-cal-title">Calendly · Cette semaine</div>
+          <div class="ad4-cal-dot"></div>
+        </div>
+        <div class="ad4-slot">
+          <div class="ad4-cross-line"></div>
+          <div class="ad4-time">09:00</div>
+          <div class="ad4-slot-info">
+            <div class="ad4-slot-name">Thomas M. — "Je compare les options"</div>
+            <div class="ad4-slot-label">Découverte · 30 min</div>
+          </div>
+          <div class="ad4-x">✕</div>
+        </div>
+        <div class="ad4-slot">
+          <div class="ad4-cross-line"></div>
+          <div class="ad4-time">11:00</div>
+          <div class="ad4-slot-info">
+            <div class="ad4-slot-name">Laura B. — "Pas le bon moment"</div>
+            <div class="ad4-slot-label">Découverte · 30 min</div>
+          </div>
+          <div class="ad4-x">✕</div>
+        </div>
+        <div class="ad4-slot">
+          <div class="ad4-cross-line"></div>
+          <div class="ad4-time">14:00</div>
+          <div class="ad4-slot-info">
+            <div class="ad4-slot-name">Kevin D. — "J'y réfléchis encore"</div>
+            <div class="ad4-slot-label">Découverte · 30 min</div>
+          </div>
+          <div class="ad4-x">✕</div>
+        </div>
+        <div class="ad4-slot">
+          <div class="ad4-cross-line"></div>
+          <div class="ad4-time">16:30</div>
+          <div class="ad4-slot-info">
+            <div class="ad4-slot-name">Sophie R. — "Pas le budget"</div>
+            <div class="ad4-slot-label">Découverte · 30 min</div>
+          </div>
+          <div class="ad4-x">✕</div>
+        </div>
+      </div>
+      <div class="ad4-headline">Encore un call pour rien.</div>
+      <div class="ad4-sub">Après 5, 7, 10 ans d'expertise — vous méritez mieux.</div>
+    </div>
+
+    <!-- AD 5 — La barrière à l'entrée -->
+    <div class="slide" id="ad5">
+      <div class="ad5-top">Voilà pourquoi le coaching a <em>mauvaise réputation.</em></div>
+      <div class="ad5-cols">
+        <div class="ad5-col ad5-col-left">
+          <div class="ad5-col-icons">📱 💻 🎥</div>
+          <div class="ad5-col-barrier">Barrière à l'entrée</div>
+          <div class="ad5-col-value">0€<br>5 minutes</div>
+          <div class="ad5-col-desc">N'importe qui peut se déclarer expert du jour au lendemain</div>
+        </div>
+        <div class="ad5-vs">
+          <div class="ad5-vs-label">VS</div>
+        </div>
+        <div class="ad5-col ad5-col-right">
+          <div class="ad5-book-mini"></div>
+          <div class="ad5-col-barrier">Barrière à l'entrée</div>
+          <div class="ad5-col-value">Des années<br>200 pages</div>
+          <div class="ad5-col-desc">Votre expertise cristallisée. Incopiable par définition.</div>
+        </div>
+      </div>
+      <div class="ad5-bottom">Votre livre est votre diplôme de médecine · Incopiable</div>
+    </div>
+
+    <!-- AD 6 — Le complexe du Gourou -->
+    <div class="slide" id="ad6">
+      <div class="ad6-eyebrow">"Vos prospects ne savent pas encore dans quelle case vous mettre."</div>
+      <div class="ad6-badges">
+        <div class="ad6-badge ad6-badge-left">
+          <div class="ad6-badge-icon">📱</div>
+          <div class="ad6-badge-title">Influenceur</div>
+          <div class="ad6-badge-sub">Contenu · Trends · Disparaît</div>
+        </div>
+        <div class="ad6-divider-v"></div>
+        <div class="ad6-badge ad6-badge-right">
+          <div class="ad6-badge-icon">📖</div>
+          <div class="ad6-badge-title">Auteur</div>
+          <div class="ad6-badge-sub">Thèse · Référence · Dure</div>
+        </div>
+      </div>
+      <div class="ad6-question">
+        "Est-ce qu'on me prend vraiment au sérieux ?<br>Ou je suis juste un créateur de contenu de plus ?"
+      </div>
+      <div class="ad6-cta">Un livre répond à cette question — une fois pour toutes</div>
+    </div>
+
+    <!-- AD 7 — Le problème de thèse -->
+    <div class="slide" id="ad7">
+      <div class="ad7-line1">Tu n'as pas<br>un problème<br>de visibilité.</div>
+      <div class="ad7-dot"></div>
+      <div class="ad7-line2">Tu as un problème<br>de thèse.</div>
+      <div class="ad7-line3">Incopiable · Monopole Personnel</div>
+      <div class="ad7-logo">incopiable.com</div>
+    </div>
+
+    <!-- AD 8 — Le plafond de verre -->
+    <div class="slide" id="ad8">
+      <div class="ad8-lines">
+        <div class="ad8-line">5 ans d'expérience.</div>
+        <div class="ad8-line">10 ans d'expérience.</div>
+        <div class="ad8-line highlight">Encore traité comme un débutant.<span class="ad8-cursor"></span></div>
+      </div>
+      <div class="ad8-divider"></div>
+      <div class="ad8-headline">Votre expérience dépasse<br>votre <em>réputation en ligne.</em></div>
+      <div class="ad8-sub">Le contenu crée de la visibilité. Pas de la crédibilité.</div>
+    </div>
+
+    <!-- AD 9 — Le paradoxe de la longueur -->
+    <div class="slide" id="ad9">
+      <div class="ad9-headline">Vous récoltez ce que<br>vous <strong>semez.</strong></div>
+      <table class="ad9-table">
+        <thead>
+          <tr>
+            <th style="text-align:left;">Plateforme</th>
+            <th>Durée</th>
+            <th>Client</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>TikTok / Instagram</td>
+            <td>30 sec</td>
+            <td>Impulsif</td>
+          </tr>
+          <tr>
+            <td>YouTube</td>
+            <td>15 min</td>
+            <td>Curieux</td>
+          </tr>
+          <tr class="row-highlight">
+            <td style="color:var(--or);">📖 Votre livre</td>
+            <td style="color:var(--or);">5–10h</td>
+            <td>Convaincu</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="ad9-tagline">Plus c'est long à créer · plus ça transfère de confiance</div>
+    </div>
+
+    <!-- AD 10 — Vous repartez de zéro -->
+    <div class="slide" id="ad10">
+      <div class="ad10-eyebrow">Chaque appel · Sans exception</div>
+      <div class="ad10-loop">
+        <div class="ad10-step">
+          <div class="ad10-step-num">1</div>
+          <div class="ad10-step-text">Nouveau prospect — froid</div>
+        </div>
+        <div class="ad10-arrow">↓</div>
+        <div class="ad10-step">
+          <div class="ad10-step-num">2</div>
+          <div class="ad10-step-text">Expliquer qui vous êtes</div>
+        </div>
+        <div class="ad10-arrow">↓</div>
+        <div class="ad10-step">
+          <div class="ad10-step-num">3</div>
+          <div class="ad10-step-text">Montrer vos études de cas</div>
+        </div>
+        <div class="ad10-arrow">↓</div>
+        <div class="ad10-step">
+          <div class="ad10-step-num">4</div>
+          <div class="ad10-step-text">Justifier votre prix</div>
+        </div>
+        <div class="ad10-arrow">↓</div>
+        <div class="ad10-step">
+          <div class="ad10-step-num">5</div>
+          <div class="ad10-step-text">Gérer les objections</div>
+        </div>
+        <div class="ad10-repeat">🔄 Recommencer la semaine prochaine</div>
+      </div>
+      <div class="ad10-headline">Combien de fois<br>vous allez <em>recommencer ?</em></div>
+    </div>
+
+    <!-- AD 11 — Le tunnel autoliquidateur -->
+    <div class="slide" id="ad11">
+      <div class="ad11-eyebrow">Et si vous étiez payé pour acquérir vos clients ?</div>
+      <div class="ad11-funnel">
+        <div class="ad11-box">Livre<span>7€</span></div>
+        <div class="ad11-arrow-right">→</div>
+        <div class="ad11-box">Order bump<span>27€</span></div>
+        <div class="ad11-arrow-right">→</div>
+        <div class="ad11-box">Upsell<span>97€</span></div>
+      </div>
+      <div class="ad11-math">
+        <div class="ad11-math-row">
+          <span>Panier moyen</span>
+          <span class="val">23€</span>
+        </div>
+        <div class="ad11-math-row">
+          <span>Coût d'acquisition</span>
+          <span class="val">14€</span>
+        </div>
+        <div class="ad11-math-row total">
+          <span>= Vous êtes rentable dès le jour 1</span>
+          <span class="val">+9€</span>
+        </div>
+      </div>
+      <div class="ad11-headline">Et derrière : votre accompagnement à 3 000€.<br>ROI réel : ×9 à ×13.</div>
+    </div>
+
+  </div><!-- .slide-wrapper -->
+
+  <div style="color:#333; font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:2px; text-align:center;">
+    Appuyez sur ← → pour naviguer · Capture d'écran pour exporter
+  </div>
+
+</div><!-- .viewer -->
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const labels = [
+    'AD 1 — Le contenu frivole',
+    'AD 3 — Le saviez-vous',
+    'AD 4 — Les touristes en call',
+    'AD 5 — La barrière à l\'entrée',
+    'AD 6 — Le complexe du Gourou',
+    'AD 7 — Le problème de thèse',
+    'AD 8 — Le plafond de verre',
+    'AD 9 — Le paradoxe de la longueur',
+    'AD 10 — Vous repartez de zéro',
+    'AD 11 — Le tunnel autoliquidateur',
+  ];
+  let current = 0;
+  const total = slides.length;
+
+  function show(n) {
+    slides.forEach(s => s.classList.remove('active'));
+    slides[n].classList.add('active');
+    document.getElementById('counter').textContent = (n + 1) + ' / ' + total;
+    document.getElementById('slide-label').textContent = labels[n];
+  }
+
+  function next() { current = (current + 1) % total; show(current); }
+  function prev() { current = (current - 1 + total) % total; show(current); }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft') prev();
+  });
+</script>
+</body>
+</html>

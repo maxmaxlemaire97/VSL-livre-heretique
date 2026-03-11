@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create vite@latest NotionLMS -- --template react)"
+    ]
+  }
+}
