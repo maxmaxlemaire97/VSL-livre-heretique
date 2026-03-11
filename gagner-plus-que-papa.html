@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gagner plus que papa — Fabien Delcourt</title>
-  <meta name="description" content="Tu fais entre 30 et 60k par an, depuis 3 ans. Ce n'est pas un hasard. C'est de l'homéostasie — et ça vient de plus loin que tu ne crois." />
+  <meta name="description" content="Tu fais entre 2,5 et 4k€ par mois, depuis 3 ans. Ce n'est pas un hasard. C'est de l'homéostasie — et ça vient de plus loin que tu ne crois." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -58,7 +58,13 @@
     /* HERO */
     .hero {
       background: var(--dark); color: var(--white);
-      padding: 100px 0 90px; text-align: center;
+      padding: 100px 0 90px;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 64px;
+      align-items: center;
     }
     .hero-badge {
       display: inline-block; font-size: 12px; font-weight: 500;
@@ -68,14 +74,14 @@
     }
     .hero h1 {
       font-family: var(--serif);
-      font-size: clamp(36px, 5.5vw, 60px);
+      font-size: clamp(32px, 4.5vw, 54px);
       line-height: 1.12; letter-spacing: -0.02em; font-weight: 400;
-      margin-bottom: 24px; max-width: 780px; margin-left: auto; margin-right: auto;
+      margin-bottom: 24px;
     }
     .hero h1 em { font-style: italic; color: var(--gold); }
     .hero-sub {
       font-size: 18px; color: rgba(255,255,255,0.6);
-      margin-bottom: 48px; max-width: 480px; margin-left: auto; margin-right: auto;
+      margin-bottom: 48px; max-width: 440px;
     }
     .hero-cta {
       display: inline-block; background: var(--gold); color: var(--dark);
@@ -89,21 +95,26 @@
 
     /* 3D BOOK MOCKUP */
     .hero-book {
-      margin: 52px auto 0;
       perspective: 900px;
-      width: 180px;
+      width: 240px;
+      flex-shrink: 0;
     }
     .book-3d {
-      width: 180px;
-      height: 260px;
+      width: 240px;
+      height: 346px;
       position: relative;
       transform-style: preserve-3d;
       transform: rotateY(-28deg) rotateX(4deg);
-      filter: drop-shadow(-20px 20px 40px rgba(0,0,0,0.5));
+      filter: drop-shadow(-24px 24px 48px rgba(0,0,0,0.6));
       transition: transform 0.4s ease;
     }
     .hero-book:hover .book-3d {
       transform: rotateY(-18deg) rotateX(4deg);
+    }
+    @media (max-width: 700px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero-book { margin: 0 auto; }
+      .hero h1 { font-size: clamp(30px, 7vw, 42px); }
     }
     /* Front cover */
     .book-front {
@@ -121,11 +132,11 @@
       background: linear-gradient(180deg, #9a6e22 0%, var(--gold) 40%, #9a6e22 100%);
     }
     .book-front-top {
-      font-size: 10px; font-weight: 600; letter-spacing: 0.12em;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
       text-transform: uppercase; color: var(--gold); padding-left: 4px;
     }
     .book-front-title {
-      font-family: var(--serif); font-size: 22px; line-height: 1.2;
+      font-family: var(--serif); font-size: 28px; line-height: 1.2;
       color: var(--white); padding-left: 4px;
     }
     .book-front-title em { font-style: italic; color: var(--gold); }
@@ -361,25 +372,29 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="container">
-      <div class="hero-badge">Lancement · 4,99€</div>
-      <h1>Tu fais entre 30 et 60k par an. Depuis 3 ans. <em>Comme par hasard.</em></h1>
-      <p class="hero-sub">Ce n'est pas un hasard. C'est de l'homéostasie — et ça vient de plus loin que tu ne crois.</p>
-      <a href="#commander" class="hero-cta">Obtenir le livre — 4,99€</a>
-      <p class="hero-price"><s>29€</s> · Prix de lancement</p>
+    <div class="container--wide">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="hero-badge">Lancement · 4,99€</div>
+          <h1>Tu fais entre 2,5 et 4k€ par mois. Depuis 3 ans. <em>Comme par hasard.</em></h1>
+          <p class="hero-sub">Ce n'est pas un hasard. C'est de l'homéostasie — et ça vient de plus loin que tu ne crois.</p>
+          <a href="#commander" class="hero-cta">Obtenir le livre — 4,99€</a>
+          <p class="hero-price"><s>29€</s> · Prix de lancement</p>
+        </div>
 
-      <div class="hero-book">
-        <div class="book-3d">
-          <div class="book-spine">
-            <span class="book-spine-text">Gagner plus que papa · Fabien Delcourt</span>
+        <div class="hero-book">
+          <div class="book-3d">
+            <div class="book-spine">
+              <span class="book-spine-text">Gagner plus que papa · Fabien Delcourt</span>
+            </div>
+            <div class="book-front">
+              <div class="book-front-top">Fabien Delcourt</div>
+              <div class="book-front-title">Gagner<br>plus que<br><em>papa</em></div>
+              <div class="book-front-line"></div>
+              <div class="book-front-author">Fabien Delcourt</div>
+            </div>
+            <div class="book-pages"></div>
           </div>
-          <div class="book-front">
-            <div class="book-front-top">Fabien Delcourt</div>
-            <div class="book-front-title">Gagner<br>plus que<br><em>papa</em></div>
-            <div class="book-front-line"></div>
-            <div class="book-front-author">Fabien Delcourt</div>
-          </div>
-          <div class="book-pages"></div>
         </div>
       </div>
     </div>
