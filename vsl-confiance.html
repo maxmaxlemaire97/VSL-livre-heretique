@@ -578,6 +578,50 @@ src="https://www.facebook.com/tr?id=985988733977989&ev=PageView&noscript=1"/></n
     flex-shrink: 0;
   }
 
+  /* ── OPTIN FORM ── */
+  .optin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 440px;
+    margin: 0 auto 16px;
+  }
+
+  .optin-form input {
+    width: 100%;
+    padding: 16px 20px;
+    background: #111110;
+    border: 1px solid #2a2820;
+    color: var(--ivoire);
+    font-family: 'Libre Baskerville', serif;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .optin-form input::placeholder {
+    color: #555;
+  }
+
+  .optin-form input:focus {
+    border-color: var(--or);
+  }
+
+  .optin-form .btn-primary {
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .form-status {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-align: center;
+    min-height: 20px;
+    color: var(--or);
+  }
+
   /* ── DIVIDER ── */
   .divider {
     width: 60px;
@@ -895,15 +939,43 @@ src="https://www.facebook.com/tr?id=985988733977989&ev=PageView&noscript=1"/></n
       Pas de pitch. Pas de pression. Un échange de 30 minutes entre experts — pour voir si c'est le bon moment pour vous.
     </p>
     <div class="reveal">
-      <a href="https://www.thecopygang.com/call" class="btn-primary">
-        Réserver un appel →
-      </a>
+      <form class="optin-form" id="optinForm" onsubmit="submitOptin(event)">
+        <input type="text" id="firstName" name="firstName" placeholder="Votre prénom" required autocomplete="given-name">
+        <input type="email" id="email" name="email" placeholder="Votre adresse email" required autocomplete="email">
+        <button type="submit" class="btn-primary">Réserver un appel →</button>
+      </form>
+      <div class="form-status" id="formStatus"></div>
     </div>
   </div>
 </section>
 
 
 <script>
+  // ── OPTIN FORM → /api/subscribe ──
+  const REDIRECT_URL = 'https://www.thecopygang.com/call';
+
+  async function submitOptin(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    const status = document.getElementById('formStatus');
+    const prenom = document.getElementById('firstName').value.trim();
+    const email = document.getElementById('email').value.trim();
+
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours…';
+    status.textContent = '';
+
+    try {
+      await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prenom, email }),
+      });
+    } catch (_) {}
+
+    window.location.href = REDIRECT_URL;
+  }
+
   // Progress bar
   const progressBar = document.getElementById('progressBar');
   const stickyCta = document.getElementById('stickyCta');
